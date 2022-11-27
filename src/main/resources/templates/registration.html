@@ -1,0 +1,131 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Registration for Jobs made easy</title>
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Font-->
+    <link rel="stylesheet" type="text/css" href="project.css">
+    <!--    <link rel="stylesheet" type="text/css" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">-->
+    <!-- Main Style Css -->
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="registration_form">
+<div class="new_user_form">
+    <div class="content">
+        <form class="user_details" action="#" method="post" id="proj_form">
+            <div class="general_details">
+                <h2>Applicant Registration</h2>
+                <div class="list">
+                    <select name="title">
+                        <option class="option" value="title">Title</option>
+                        <option class="option" value="miss">Miss</option>
+                        <option class="option" value="mrs.">Mrs.</option>
+                        <option class="option" value="mr.">Mr</option>
+                    </select>
+                    <span class="title_button">
+   	<i class="drop_down"></i>
+ </span>
+                </div>
+                <div class="forms">
+                    <div class="list list-1">
+                        <input type="text" name="first_name" id="first_name" class="input-text" placeholder="First Name" required>
+                    </div>
+                    <div class="list list-2">
+                        <input type="text" name="last_name" id="last_name" class="input-text" placeholder="Last Name" required>
+                    </div>
+                </div>
+                <div class="list">
+                    <select name="education_history">
+                        <option value="education_history">Highest level on Education</option>
+                        <option value="master">Master's</option>
+                        <option value="bachelor">Bachelors</option>
+                        <option value="diploma">Diploma</option>
+                    </select>
+                    <span class="title_button">
+   	<i class="drop_down"></i>
+ </span>
+                </div>
+
+                <div class="forms">
+                    <div class="list list-3">
+                        <input type="text" name="education_type" class="education_type" id="education_type" placeholder="Education Speciality" required>
+                    </div>
+                    <div class="list list-4">
+                        <select name="diplomas">
+                            <option value="application_type">Application Type</option>
+                            <option value="part_time">Part Time</option>
+                            <option value="full_time">Full Time</option>
+
+                        </select>
+                        <span class="title_button">
+   	<i class="drop_down"></i>
+ </span>
+                    </div>
+                </div>
+            </div>
+            <div class="contact_details">
+                <h2>Contact Details</h2>
+                <div class="list">
+                    <input type="text" name="street" class="street" id="street" placeholder="Address Line 1" required>
+                </div>
+                <div class="list">
+                    <input type="text" name="address-line_one" class="address-line_one" id="address-line_one" placeholder="Address Line 2" required>
+                </div>
+                <div class="forms">
+                    <div class="list list-1">
+                        <input type="text" name="zip" class="zip" id="zip" placeholder="Zip Code" required>
+                    </div>
+                    <div class="list list-2">
+                        <select name="province">
+                            <option value="province">Province</option>
+                            <option value="ontario">Ontario</option>
+                            <option value="nova_scotia">Nova Scotia</option>
+                            <option value="british_columbia">British Columbia</option>
+                            <option value="ottawa">Ottawa</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <span class="title_button">
+   	<i class="drop_down"></i>
+ </span>
+                    </div>
+                </div>
+                <div class="list">
+                    <select name="country">
+                        <option value="country">Country</option>
+                        <option value="canada">Canada</option>
+                        <option value="india">India</option>
+                        <option value="china">China</option>
+                        <option value="usa">USA</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <span class="title_button">
+   	<i class="drop_down"></i>
+ </span>
+                </div>
+                <div class="forms">
+                    <div class="list list-1">
+                        <input type="text" name="dial_code" class="dial_code" id="dial_code" placeholder="Code +" required>
+                    </div>
+                    <div class="list list-2">
+                        <input type="text" name="phone_number" class="phone_number" id="phone_number" placeholder="Phone Number" required>
+                    </div>
+                </div>
+                <div class="list">
+                    <input type="text" name="email_id" id="email_id" class="input-text" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="Email Id">
+                </div>
+                <div class="conditions">
+                    <label class="container"><p>I agree to this website's <a href="#" class="text">Terms and Conditions</a> and I want to get email notifications.</p>
+                        <input type="checkbox" name="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="list-last">
+                    <input type="submit" name="register" class="register" value="Register new user">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
