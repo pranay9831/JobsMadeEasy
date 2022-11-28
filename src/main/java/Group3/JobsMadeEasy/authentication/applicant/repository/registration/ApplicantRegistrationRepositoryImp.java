@@ -2,7 +2,6 @@ package Group3.JobsMadeEasy.authentication.applicant.repository.registration;
 
 import Group3.JobsMadeEasy.authentication.applicant.model.Applicant;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 import javax.annotation.PostConstruct;
@@ -12,12 +11,10 @@ import javax.sql.DataSource;
 @Repository
 public class ApplicantRegistrationRepositoryImp extends JdbcDaoSupport implements IApplicantRegistrationRepository {
 
-    private final JdbcTemplate jdbcTemplate;
     DataSource dataSource;
 
     @Autowired
-    public ApplicantRegistrationRepositoryImp(JdbcTemplate jdbcTemplate, DataSource dataSource) {
-        this.jdbcTemplate = jdbcTemplate;
+    public ApplicantRegistrationRepositoryImp(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 

@@ -20,7 +20,7 @@ public class ApplicantLoginController {
     }
 
 
-    @PostMapping("/auth/login")
+    @PostMapping("/auth/applicant/login")
     public Applicant loginApplicant(@RequestBody Login login) throws ApplicantAuthenticationException {
         if(login == null){
             throw new ApplicantAuthenticationException("Login details are not found...");

@@ -3,7 +3,6 @@ package Group3.JobsMadeEasy.authentication.applicant.repository.login;
 import Group3.JobsMadeEasy.authentication.applicant.model.Applicant;
 import Group3.JobsMadeEasy.authentication.applicant.model.Login;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
@@ -13,12 +12,10 @@ import javax.sql.DataSource;
 @Repository
 public class ApplicantLoginRepositoryImp extends JdbcDaoSupport implements IApplicantLoginRepository{
 
-    private final JdbcTemplate jdbcTemplate;
     DataSource dataSource;
 
     @Autowired
-    public ApplicantLoginRepositoryImp(JdbcTemplate jdbcTemplate, DataSource dataSource) {
-        this.jdbcTemplate = jdbcTemplate;
+    public ApplicantLoginRepositoryImp(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -29,7 +26,6 @@ public class ApplicantLoginRepositoryImp extends JdbcDaoSupport implements IAppl
 
     @Override
     public Applicant checkLoginDetails(Login login) {
-        System.out.println(login.getEmailId() + ">>>>" + login.getPassword());
         String sql = "SELECT * FROM applicant WHERE emailId = ? AND  password = ?";
         return getJdbcTemplate().queryForObject(sql, (rs, rwNumber) -> {
             Applicant applicant = new Applicant();

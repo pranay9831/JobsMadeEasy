@@ -19,7 +19,7 @@ public class ApplicantRegistrationController{
     }
 
 
-    @PostMapping("/auth/register")
+    @PostMapping("/auth/applicant/register")
     public boolean createApplicant(@RequestBody Applicant applicant) throws ApplicantAuthenticationException {
         if(applicant == null){
             throw new ApplicantAuthenticationException("Applicant register details not found..");
