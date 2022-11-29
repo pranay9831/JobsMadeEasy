@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS applicant;
-CREATE TABLE `csci_5308`.`applicant` (
+CREATE TABLE `CSCI5308_3_DEVINT`.`applicant` (
                                     `applicantId` INT NOT NULL,
                                     `firstName` VARCHAR(45) NOT NULL,
                                     `lastName` VARCHAR(45) NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE `csci_5308`.`applicant` (
                                     `applicantStatus` TINYINT NOT NULL DEFAULT TRUE,
                                     PRIMARY KEY (`applicantId`));
 DROP TABLE IF EXISTS employee;
-CREATE TABLE `csci_5308`.`employee` (
+CREATE TABLE `CSCI5308_3_DEVINT`.`employee` (
                                         `employeeId` INT NOT NULL,
                                         `firstName` VARCHAR(45) NULL,
                                         `lastName` VARCHAR(45) NULL,
