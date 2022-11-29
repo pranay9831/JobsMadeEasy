@@ -23,9 +23,9 @@ public class EmployeeLoginController {
 
     @PostMapping("/auth/employee/login")
     public Employee loginEmployee(@RequestBody Login login) throws EmployeeAuthenticationException {
-        if(login == null){
+        if (login == null) {
             throw new EmployeeAuthenticationException("Login details are not found for the employee...");
-        }else{
+        } else {
             login.setEmailId(login.getEmailId());
             login.setPassword(login.getPassword());
         }

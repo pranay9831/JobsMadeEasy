@@ -43,6 +43,6 @@ public class EmployeeLoginRepositoryImp extends JdbcDaoSupport implements IEmplo
             employee.setPostalCode(rs.getString("postalCode"));
             employee.setEmployeeStatus(rs.getBoolean("employeeStatus"));
             return employee;
-        },new Object[]{login.getEmailId(),login.getPassword()});
+        }, new Object[]{login.getEmailId(), login.getPassword()});
     }
 }

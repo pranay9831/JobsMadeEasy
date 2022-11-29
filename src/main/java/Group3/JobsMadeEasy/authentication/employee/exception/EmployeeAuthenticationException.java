@@ -1,6 +1,6 @@
 package Group3.JobsMadeEasy.authentication.employee.exception;
 
-public class EmployeeAuthenticationException extends Exception{
+public class EmployeeAuthenticationException extends Exception {
 
     private String message;
 
@@ -9,7 +9,7 @@ public class EmployeeAuthenticationException extends Exception{
         this.message = message;
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return message;
     }
 

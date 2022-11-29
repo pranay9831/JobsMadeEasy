@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 @Service
-public class EmployeeRegistrationRepositoryImp extends JdbcDaoSupport implements IEmployeeRegistrationRepository{
+public class EmployeeRegistrationRepositoryImp extends JdbcDaoSupport implements IEmployeeRegistrationRepository {
 
     DataSource dataSource;
 

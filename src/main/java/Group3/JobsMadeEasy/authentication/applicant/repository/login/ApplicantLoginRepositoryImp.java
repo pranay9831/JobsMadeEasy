@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 @Repository
-public class ApplicantLoginRepositoryImp extends JdbcDaoSupport implements IApplicantLoginRepository{
+public class ApplicantLoginRepositoryImp extends JdbcDaoSupport implements IApplicantLoginRepository {
 
     DataSource dataSource;
 
@@ -41,6 +41,6 @@ public class ApplicantLoginRepositoryImp extends JdbcDaoSupport implements IAppl
             applicant.setPostalCode(rs.getString("postalCode"));
             applicant.setApplicantStatus(rs.getBoolean("applicantStatus"));
             return applicant;
-        },new Object[]{login.getEmailId(),login.getPassword()});
+        }, new Object[]{login.getEmailId(), login.getPassword()});
     }
 }

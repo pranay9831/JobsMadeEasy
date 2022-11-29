@@ -4,6 +4,7 @@ import Group3.JobsMadeEasy.authentication.applicant.model.Applicant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
+
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
