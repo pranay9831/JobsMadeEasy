@@ -1,10 +1,10 @@
-package Group3.JobsMadeEasy.authentication.applicant.exception;
+package Group3.JobsMadeEasy.authentication.employee.exception;
 
-public class ApplicantAuthenticationException extends Exception {
+public class EmployeeAuthenticationException extends Exception {
 
     private String message;
 
-    public ApplicantAuthenticationException(String message) {
+    public EmployeeAuthenticationException(String message) {
         super(message);
         this.message = message;
     }
