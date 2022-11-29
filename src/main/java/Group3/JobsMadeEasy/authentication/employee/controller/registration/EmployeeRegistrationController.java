@@ -1,10 +1,13 @@
 package Group3.JobsMadeEasy.authentication.employee.controller.registration;
 
+import Group3.JobsMadeEasy.authentication.applicant.model.Applicant;
 import Group3.JobsMadeEasy.authentication.employee.exception.EmployeeAuthenticationException;
 import Group3.JobsMadeEasy.authentication.employee.model.Employee;
 import Group3.JobsMadeEasy.authentication.employee.repository.registration.IEmployeeRegistrationRepository;
 import Group3.JobsMadeEasy.util.GenerateIdUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +22,13 @@ public class EmployeeRegistrationController {
     @Autowired
     public EmployeeRegistrationController(IEmployeeRegistrationRepository employeeRegistrationRepository) {
         this.employeeRegistrationRepository = employeeRegistrationRepository;
+    }
+
+    @GetMapping("/employee/register")
+    public String showEmployeeRegistrationForm(Model model) {
+        Employee employee = new Employee();
+        model.addAttribute("employee", employee);
+        return "register_employee";
     }
 
     @PostMapping("/auth/employee/register")

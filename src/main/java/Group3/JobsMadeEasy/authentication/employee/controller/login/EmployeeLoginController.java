@@ -6,6 +6,7 @@ import Group3.JobsMadeEasy.authentication.employee.model.Employee;
 import Group3.JobsMadeEasy.authentication.employee.model.Login;
 import Group3.JobsMadeEasy.authentication.employee.repository.login.IEmployeeLoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,10 @@ public class EmployeeLoginController {
         this.employeeLoginRepository = employeeLoginRepository;
     }
 
+    @GetMapping("/employee/login")
+    public String showEmployeeLoginForm() {
+        return "login_employee";
+    }
 
     @PostMapping("/auth/employee/login")
     public Employee loginEmployee(@RequestBody Login login) throws EmployeeAuthenticationException {

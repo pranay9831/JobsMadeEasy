@@ -20,9 +20,9 @@ public class ApplicantLoginController {
         this.applicantLoginRepository = applicantLoginRepository;
     }
 
-    @GetMapping("/login")
+    @GetMapping("/applicant/login")
     public String showApplicantLoginForm() {
-        return "login";
+        return "login_applicant";
     }
 
     @PostMapping("/auth/applicant/login")

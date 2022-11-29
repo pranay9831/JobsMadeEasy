@@ -29,7 +29,7 @@ public class ApplicantRegistrationController {
     public String showApplicantRegistrationForm(Model model) {
         Applicant applicant = new Applicant();
         model.addAttribute("applicant", applicant);
-        return "register";
+        return "register_applicant";
     }
 
     @PostMapping("/auth/applicant/register")
