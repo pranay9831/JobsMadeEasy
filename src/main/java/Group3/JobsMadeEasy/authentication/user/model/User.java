@@ -1,7 +1,7 @@
-package Group3.JobsMadeEasy.authentication.applicant.model;
+package Group3.JobsMadeEasy.authentication.user.model;
 
-public class Applicant {
-    private int applicantId;
+public class User {
+    private int userId;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -11,14 +11,18 @@ public class Applicant {
     private String province;
     private String address;
     private String postalCode;
-    private boolean applicantStatus;
 
-    public int getApplicantId() {
-        return applicantId;
+    private int roleId;
+
+    private boolean isEmployee;
+    private boolean isApproved;
+
+    public int getUserId() {
+        return userId;
     }
 
-    public void setApplicantId(int applicantId) {
-        this.applicantId = applicantId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -93,18 +97,34 @@ public class Applicant {
         this.postalCode = postalCode;
     }
 
-    public boolean isApplicantStatus() {
-        return applicantStatus;
+    public int getRoleId() {
+        return roleId;
     }
 
-    public void setApplicantStatus(boolean applicantStatus) {
-        this.applicantStatus = applicantStatus;
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
+
+    public boolean isEmployee() {
+        return isEmployee;
+    }
+
+    public void setEmployee(boolean employee) {
+        isEmployee = employee;
+    }
+
+    public boolean isApproved() {
+        return isApproved;
+    }
+
+    public void setApproved(boolean approved) {
+        isApproved = approved;
     }
 
     @Override
     public String toString() {
-        return "Applicant{" +
-                "applicantId=" + applicantId +
+        return "User{" +
+                "userId=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
@@ -114,7 +134,9 @@ public class Applicant {
                 ", province='" + province + '\'' +
                 ", address='" + address + '\'' +
                 ", postalCode='" + postalCode + '\'' +
-                ", applicantStatus='" + applicantStatus + '\'' +
+                ", roleID=" + roleId +
+                ", isEmployee=" + isEmployee +
+                ", isApproved=" + isApproved +
                 '}';
     }
 }

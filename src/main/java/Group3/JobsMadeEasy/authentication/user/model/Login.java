@@ -1,4 +1,4 @@
-package Group3.JobsMadeEasy.authentication.applicant.model;
+package Group3.JobsMadeEasy.authentication.user.model;
 
 public class Login {
 
