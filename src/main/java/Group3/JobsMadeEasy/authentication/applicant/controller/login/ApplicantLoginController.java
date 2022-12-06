@@ -5,12 +5,14 @@ import Group3.JobsMadeEasy.authentication.applicant.model.Applicant;
 import Group3.JobsMadeEasy.authentication.applicant.model.Login;
 import Group3.JobsMadeEasy.authentication.applicant.repository.login.IApplicantLoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class ApplicantLoginController {
 
     private final IApplicantLoginRepository applicantLoginRepository;
@@ -20,8 +22,14 @@ public class ApplicantLoginController {
         this.applicantLoginRepository = applicantLoginRepository;
     }
 
-    @GetMapping("/applicant/login")
+   @GetMapping("/applicant/login")
     public String showApplicantLoginForm() {
+        return "login_applicant";
+    }
+    @GetMapping("login")
+    public String login (Model model) {
+        Applicant applicant = new Applicant();
+        model.addAttribute("applicant",applicant);
         return "login_applicant";
     }
 

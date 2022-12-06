@@ -5,13 +5,12 @@ import Group3.JobsMadeEasy.authentication.applicant.model.Applicant;
 import Group3.JobsMadeEasy.authentication.applicant.repository.registration.IApplicantRegistrationRepository;
 import Group3.JobsMadeEasy.util.GenerateIdUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+@Controller
 public class ApplicantRegistrationController {
 
     private final IApplicantRegistrationRepository applicantRegistrationRepository;
@@ -25,10 +24,10 @@ public class ApplicantRegistrationController {
         return "index";
     }
 
-    @GetMapping("/applicant/register")
-    public String showApplicantRegistrationForm(Model model) {
+    @GetMapping("register")
+    public String register (Model model) {
         Applicant applicant = new Applicant();
-        model.addAttribute("applicant", applicant);
+        model.addAttribute("applicant",applicant);
         return "register_applicant";
     }
 
