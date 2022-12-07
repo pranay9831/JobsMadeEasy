@@ -4,13 +4,12 @@ import Group3.JobsMadeEasy.authentication.user.model.User;
 import Group3.JobsMadeEasy.authentication.user.repository.registration.IUserRegistrationRepository;
 import Group3.JobsMadeEasy.util.GenerateIdUtil;
 import Group3.JobsMadeEasy.util.JobsMadeEasyException;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
+
+@Controller
 public class UserRegistrationController {
 
     private final IUserRegistrationRepository userRegistrationRepository;
@@ -32,7 +31,7 @@ public class UserRegistrationController {
     }
 
     @PostMapping("/auth/register")
-    public boolean createUser(@RequestBody User user) throws JobsMadeEasyException {
+    public String createUser(@ModelAttribute User user) throws JobsMadeEasyException {
         if (user == null) {
             throw new JobsMadeEasyException("user register details not found..");
         } else {
@@ -52,6 +51,6 @@ public class UserRegistrationController {
             user.setApproved(false);
         }
         this.userRegistrationRepository.createUser(user);
-        return true;
+        return "index";
     }
 }
