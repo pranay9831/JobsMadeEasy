@@ -21,4 +21,5 @@ public class JobsMadeEasyException extends Exception {
                 "message='" + message + '\'' +
                 '}';
     }
+
 }
