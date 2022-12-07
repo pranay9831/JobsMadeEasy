@@ -1,12 +1,14 @@
-package Group3.JobsMadeEasy.authentication.employee.exception;
+package Group3.JobsMadeEasy.util;
 
-public class EmployeeAuthenticationException extends Exception {
+
+public class JobsMadeEasyException extends Exception {
 
     private String message;
 
-    public EmployeeAuthenticationException(String message) {
+    public JobsMadeEasyException(String message) {
         super(message);
         this.message = message;
+
     }
 
     public String getMessage() {
@@ -15,7 +17,7 @@ public class EmployeeAuthenticationException extends Exception {
 
     @Override
     public String toString() {
-        return "ApplicantException{" +
+        return "JobsMadeEasyException{" +
                 "message='" + message + '\'' +
                 '}';
     }
