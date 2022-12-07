@@ -6,16 +6,17 @@ import Group3.JobsMadeEasy.authentication.user.model.User;
 import Group3.JobsMadeEasy.authentication.user.model.Login;
 import Group3.JobsMadeEasy.authentication.user.repository.login.IUserLoginRepository;
 import Group3.JobsMadeEasy.util.JobsMadeEasyException;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
-@RestController
+@Controller
 public class UserLoginController {
 
     private final IUserLoginRepository userLoginRepository;
@@ -28,19 +29,19 @@ public class UserLoginController {
 
     @GetMapping("/login")
     public String showLoginForm(Model model) {
-        User user = new User();
-        model.addAttribute("user",user);
+        Login login = new Login();
+        model.addAttribute("login",login);
         return "login";
     }
 
     @PostMapping("/auth/login")
-    public User loginApplicant(@RequestBody Login login, HttpSession session) throws JobsMadeEasyException {
+    public String loginApplicant(@ModelAttribute Login login, HttpSession session) throws JobsMadeEasyException {
         login.setEmailId(login.getEmailId());
         login.setPassword(login.getPassword());
         User user = this.userLoginRepository.checkLoginDetails(login);
         Optional<Role> role = this.roleRepository.getRole(user.getRoleId());
         session.setAttribute("role", role.get().getRoleName());
         System.out.println(session.getAttribute("role") + ">>>>>>>>>>>>>>>>>>>>>>");
-        return user;
+        return "index";
     }
 }

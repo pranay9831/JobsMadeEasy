@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/style/project.css">
+</head>
+<body class="registration_form">
+<div class="new_user_form">
+    <div class="content">
+        <form class="user_details" method="post" id="proj_form" th:action="@{/auth/login}" th:object="${login}">
+            <div class="general_details">
+                <div class="contact_details">
+                    <h2>Contact Details</h2>
+                    <div class="list">
+                        <input type="text" name="email_id" id="email_id" class="input-text" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="Email Id" th:field="*{emailId}">
+                    </div>
+                    <div class="list">
+                        <input type="password" name="password" class="password" id="password" placeholder="Create Password" th:field="*{password}" required>
+                    </div>
+                    <div class="list-last1">
+                        <input type="submit" name="login" class="login">
+
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
