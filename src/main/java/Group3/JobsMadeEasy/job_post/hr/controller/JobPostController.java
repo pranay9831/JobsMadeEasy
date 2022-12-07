@@ -22,8 +22,7 @@ public class JobPostController {
     @PostMapping("/createJobPost")
     public boolean createJobPost(@RequestBody JobPost jobPost) throws JobPostException, JsonProcessingException {
         if (jobPost == null) {
-            throw new JobPostException("No such job post found!!");
-        } else {
+            throw new JobPostException("No such job post found!!");} else {
             jobPost.setJobPostId(jobPost.getJobPostId());
             jobPost.setJobTitle(jobPost.getJobTitle());
             jobPost.setSalary(jobPost.getSalary());

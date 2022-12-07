@@ -31,8 +31,9 @@ public class ApplicantRegistrationController {
         return "register_applicant";
     }
 
-    @PostMapping("/auth/applicant/register")
-    public boolean createApplicant(@RequestBody Applicant applicant) throws ApplicantAuthenticationException {
+    @PostMapping(value ="/afterRegister",headers = "Accept=application/json")
+    public boolean createApplicant(@ModelAttribute("applicant") Applicant applicant) throws ApplicantAuthenticationException {
+        System.out.println(applicant.toString() + "applicant here");
         if (applicant == null) {
             throw new ApplicantAuthenticationException("Applicant register details not found..");
         } else {
@@ -49,6 +50,7 @@ public class ApplicantRegistrationController {
             applicant.setApplicantStatus(true);
         }
         this.applicantRegistrationRepository.createApplicant(applicant);
+        System.out.printf("applicant created......");
         return true;
     }
 }
