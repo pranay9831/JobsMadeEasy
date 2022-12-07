@@ -17,6 +17,27 @@ public class User {
     private boolean isEmployee;
     private boolean isApproved;
 
+    public User() {
+    }
+
+    public User(int userId, String firstName, String lastName, String phoneNumber, String emailId, String password,
+                String city, String province, String address, String postalCode, int roleId, boolean isEmployee,
+                boolean isApproved) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.emailId = emailId;
+        this.password = password;
+        this.city = city;
+        this.province = province;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.roleId = roleId;
+        this.isEmployee = isEmployee;
+        this.isApproved = isApproved;
+    }
+
     public int getUserId() {
         return userId;
     }
