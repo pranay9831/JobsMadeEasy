@@ -5,7 +5,6 @@ import Group3.JobsMadeEasy.util.GenerateIdUtil;
 import Group3.JobsMadeEasy.util.JobsMadeEasyException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +26,7 @@ public class JobPostController {
         return "jobPost";
     }
 
-    @PostMapping("/save/jobPost")
+    @PostMapping("/jobPost")
     public String createJobPost(@ModelAttribute JobPost jobPost) throws JobsMadeEasyException {
         System.out.println("index");
         if (jobPost == null)
@@ -48,18 +47,19 @@ public class JobPostController {
         return "index";
     }
 
-    @GetMapping("/view_all_job_post")
-    public List<JobPost> getAllJobPost() throws JobsMadeEasyException
+    @GetMapping("/job-post")
+    public List<JobPost> getAllJobPost()
     {
+
         List<JobPost> jobPost= new ArrayList<>();
         List<JobPost> newList = this.jobPostCreationRepository.viewAllJobs();
         newList.forEach(x -> {jobPost.add(x);});
         return jobPost;
     }
     
-    @GetMapping("/get_job_post_by_id")
-    public Optional<JobPost> getJobById(@RequestBody int id) throws JobsMadeEasyException {
-        Optional<JobPost> jobPost = null;
+    @GetMapping("/job-post/{id}")
+    public Optional<JobPost> getJobById(@PathVariable int id) throws JobsMadeEasyException {
+        Optional jobPost = null;
         if(id == 0)
         {
             throw new JobsMadeEasyException("No job post with given id.!!");
@@ -71,6 +71,19 @@ public class JobPostController {
         }
         return jobPost;
     }
-    
+
+    @DeleteMapping("/job-post/{id}")
+    public boolean deleteJobPostById(@PathVariable int id) throws JobsMadeEasyException
+    {
+        if (this.getJobById(id).isPresent())
+        {
+            this.jobPostCreationRepository.deleteJobById(id);
+            return true;
+        }
+        else
+        {
+            throw new JobsMadeEasyException("No job post found with given id.!!");
+        }
+    }
 
 }

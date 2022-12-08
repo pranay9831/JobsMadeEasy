@@ -11,6 +11,8 @@ public interface IJobPostCreationRepository
     boolean createJobPost (JobPost jobPost);
     List<JobPost> viewAllJobs();
     Optional viewAllJobsById(int id);
+    int deleteJobById(int id);
+    List getById(int id);
 
 
 }

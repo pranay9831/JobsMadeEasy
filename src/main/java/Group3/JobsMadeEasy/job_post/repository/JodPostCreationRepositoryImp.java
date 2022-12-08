@@ -67,4 +67,18 @@ public class JodPostCreationRepositoryImp extends JdbcDaoSupport implements IJob
                 .stream()
                 .findFirst();
     }
+
+    @Override
+    public List getById(int id)
+    {
+        String sql = "SELECT job_post_id FROM job_post WHERE job_post_id= ?";
+        return getJdbcTemplate().query(sql,new JObPostMapper(),id);
+    }
+
+    @Override
+    public int deleteJobById(int id)
+    {
+        String sql = "DELETE FROM job_post WHERE job_post_id= ?";
+        return getJdbcTemplate().update(sql,id);
+    }
 }
