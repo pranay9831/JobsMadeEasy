@@ -17,6 +17,13 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class UserRegistrationRepositoryImpTest {
@@ -67,5 +74,58 @@ public class UserRegistrationRepositoryImpTest {
                 .thenReturn(1);
         userRegistrationRepositoryImp.createUser(user);
         Assertions.assertEquals(1,jdbcTemplate.update(sql,mapParameters));
+    }
+
+    @Test
+    public void getUserTest() {
+        when(userRegistrationRepositoryImp.getUser(1)).thenReturn(Optional.of(new User(1, "Deep",
+                "Dave", "12345678", "test@gmail.com","1234","halifax",
+                "NS","Dalhousie","123",
+                1,false,false)));
+        Optional<User> user = userRegistrationRepositoryImp.getUser(1);
+        assertEquals(1, user.get().getUserId());
+        assertEquals("Deep", user.get().getFirstName());
+        assertEquals("Dave", user.get().getLastName());
+        assertEquals("12345678", user.get().getPhoneNumber());
+        assertEquals("test@gmail.com", user.get().getEmailId());
+        assertEquals("1234", user.get().getPassword());
+        assertEquals("halifax", user.get().getCity());
+        assertEquals("NS", user.get().getProvince());
+        assertEquals("Dalhousie", user.get().getAddress());
+        assertEquals("123", user.get().getPostalCode());
+        assertEquals(1, user.get().getRoleId());
+        assertEquals(false, user.get().isEmployee());
+        assertEquals(false, user.get().isApproved());
+    }
+
+    @Test
+    public void viewAllUsersTest() {
+        List<User> list = new ArrayList<User>();
+        User user1 = new User(1, "Deep",
+                "Dave", "12345678", "test@gmail.com","1234","halifax",
+                "NS","Dalhousie","B2K 2Z2",
+                1,false,false);
+        User user2 = new User(2, "Deep",
+                "Dave", "12345678", "test@gmail.com","1234","halifax",
+                "NS","Dalhousie","B2K 2Z2",
+                1,false,false);
+        User user3 = new User(3, "Deep",
+                "Dave", "12345678", "test@gmail.com","1234","halifax",
+                "NS","Dalhousie","B2K 2Z2",
+                1,false,false);
+        list.add(user1);
+        list.add(user2);
+        list.add(user3);
+        when(userRegistrationRepositoryImp.viewAllUsers()).thenReturn(list);
+        List<User> userList = userRegistrationRepositoryImp.viewAllUsers();
+        assertEquals(3, userList.size());
+        verify(userRegistrationRepositoryImp, times(1)).viewAllUsers();
+    }
+
+    @Test
+    public void deleteRoleByIdTest() {
+        when(userRegistrationRepositoryImp.deleteUserById(1)).thenReturn(true);
+        boolean result = userRegistrationRepositoryImp.deleteUserById(1);
+        assertEquals(result,true);
     }
 }

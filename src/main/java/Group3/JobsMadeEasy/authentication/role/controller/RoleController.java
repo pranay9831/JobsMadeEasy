@@ -4,10 +4,10 @@ package Group3.JobsMadeEasy.authentication.role.controller;
 import Group3.JobsMadeEasy.authentication.role.model.Role;
 import Group3.JobsMadeEasy.authentication.role.repository.IRoleRepository;
 import Group3.JobsMadeEasy.util.JobsMadeEasyException;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class RoleController {
@@ -30,14 +30,35 @@ public class RoleController {
         return true;
     }
 
-    @GetMapping("/get_role_by_id")
-    public boolean getRoleById(@RequestBody int id) throws JobsMadeEasyException {
+    @GetMapping("/get_role_by_id/{id}")
+    public Optional<Role> getRoleById(@PathVariable int id) throws JobsMadeEasyException {
         if (id == 0) {
             throw new JobsMadeEasyException("No role found in DB");
         } else {
-            this.roleRepository.getRole(id);
+            return this.roleRepository.getRole(id);
         }
-        return true;
+    }
+
+    @GetMapping("/get_all_roles")
+    public List<Role> getAllRoles()
+    {
+        List<Role> roles= new ArrayList<>();
+        List<Role> newList = this.roleRepository.viewAllRoles();
+        newList.forEach(x -> {roles.add(x);});
+        return roles;
+    }
+
+    @DeleteMapping("/delete_role/{id}")
+    public boolean deleteRoleById(@PathVariable int id) throws JobsMadeEasyException
+    {
+        if (this.getRoleById(id).isPresent())
+        {
+            return this.roleRepository.deleteRoleById(id);
+        }
+        else
+        {
+            throw new JobsMadeEasyException("No job post found with given id.!!");
+        }
     }
 
 }

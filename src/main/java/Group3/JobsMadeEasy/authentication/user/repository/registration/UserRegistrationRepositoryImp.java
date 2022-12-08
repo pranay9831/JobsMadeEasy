@@ -1,12 +1,17 @@
 package Group3.JobsMadeEasy.authentication.user.repository.registration;
 
+import Group3.JobsMadeEasy.authentication.role.model.Role;
+import Group3.JobsMadeEasy.authentication.role.model.RoleMapper;
 import Group3.JobsMadeEasy.authentication.user.model.User;
+import Group3.JobsMadeEasy.authentication.user.model.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
+import java.util.List;
+import java.util.Optional;
 
 
 @Repository
@@ -36,5 +41,44 @@ public class UserRegistrationRepositoryImp extends JdbcDaoSupport implements IUs
                 , user.getPostalCode(), user.getRoleId(), user.isEmployee(), user.isApproved()
         });
         return true;
+    }
+
+    @Override
+    public Optional<User> getUser(int id) {
+        String sql = "SELECT * FROM user WHERE userId = ?";
+        System.out.println(id + "id>>>>>>>>>>");
+        return getJdbcTemplate().query(sql, new UserMapper(), id)
+                .stream()
+                .findFirst();
+    }
+
+    @Override
+    public List<User> viewAllUsers() {
+        String sql = "SELECT * FROM user";
+        return getJdbcTemplate().query(
+                sql,
+                (rs, rowNum) ->
+                        new User(
+                                rs.getInt("userId"),
+                                rs.getString("firstName"),
+                                rs.getString("lastName"),
+                                rs.getString("phoneNumber"),
+                                rs.getString("emailId"),
+                                rs.getString("password"),
+                                rs.getString("city"),
+                                rs.getString("province"),
+                                rs.getString("address"),
+                                rs.getString("postalCode"),
+                                rs.getInt("roleId"),
+                                rs.getBoolean("isEmployee"),
+                                rs.getBoolean("isApproved")
+                        ));
+    }
+
+    @Override
+    public boolean deleteUserById(int id) {
+        String sql = "DELETE FROM user WHERE userId= ?";
+        Object[] args = new Object[] {id};
+        return getJdbcTemplate().update(sql, args) == 1;
     }
 }
