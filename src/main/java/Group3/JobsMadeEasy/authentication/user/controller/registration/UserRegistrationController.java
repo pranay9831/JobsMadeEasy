@@ -8,8 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-@Controller
+
+@RestController
 public class UserRegistrationController {
 
     private final IUserRegistrationRepository userRegistrationRepository;
@@ -52,5 +56,36 @@ public class UserRegistrationController {
         }
         this.userRegistrationRepository.createUser(user);
         return "index";
+    }
+
+    @GetMapping("/get_user_by_id/{id}")
+    public Optional<User> getUserById(@PathVariable int id) throws JobsMadeEasyException {
+        if (id == 0) {
+            throw new JobsMadeEasyException("No role found in DB");
+        } else {
+            return this.userRegistrationRepository.getUser(id);
+        }
+    }
+
+    @GetMapping("/get_all_users")
+    public List<User> getAllUsers()
+    {
+        List<User> users= new ArrayList<>();
+        List<User> newList = this.userRegistrationRepository.viewAllUsers();
+        newList.forEach(x -> {users.add(x);});
+        return users;
+    }
+
+    @DeleteMapping("/delete_user_by_id/{id}")
+    public boolean deleteUserById(@PathVariable int id) throws JobsMadeEasyException
+    {
+        if (this.getUserById(id).isPresent())
+        {
+            return this.userRegistrationRepository.deleteUserById(id);
+        }
+        else
+        {
+            throw new JobsMadeEasyException("No job post found with given id.!!");
+        }
     }
 }
