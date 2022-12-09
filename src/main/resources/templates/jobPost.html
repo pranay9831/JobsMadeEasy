@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="utf-8">
+    <title>Registration for Jobs made easy</title>
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Font-->
+    <!--    <link rel="stylesheet" type="text/css" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">-->
+    <!-- Main Style Css -->
+    <link th:href="@{/style/project.css}" type="text/css" rel="stylesheet" />
+    <style id="__web-inspector-hide-shortcut-style__">
+.__web-inspector-hide-shortcut__, .__web-inspector-hide-shortcut__ *, .__web-inspector-hidebefore-shortcut__::before, .__web-inspector-hideafter-shortcut__::after
+{
+    visibility: hidden !important;
+}
+</style></head>
+<body class="registration_form" data-new-gr-c-s-check-loaded="14.1087.0" data-gr-ext-installed="">
+<div class="new_user_form">
+    <div class="content">
+        <form class="user_details" method="post" th:object="${jobPost}" th:action="@{/add_job_post}">
+
+            <div class="contact_details">
+                <h2>Job Details</h2>
+                <div class="list">
+                    <input type="text" name="job" class="job" id="job" placeholder="Job Title" required="" th:field="*{jobTitle}">
+                </div>
+                <div class="list">
+                    <input type="text" name="salary" class="salary" id="address-line_one" placeholder="Salary" required="" th:field="*{salary}">
+                </div>
+                <div class="list">
+                    <input type="text" name="jobType" class="jobType" id="jobType" placeholder="Job Type" required="" th:field="*{jobType}">
+
+                </div>
+                <div class="list">
+                    <input name="jobDescription" type="text" class="jobDescription" id="jobDescription" placeholder="Job Decription" th:field="*{jobDescription}">
+
+                </div>
+
+                <div class="list">
+                    <input type="text" name="jobLocation" id="jobLocation" class="jobLocation" placeholder="Job Location" required="" th:field="*{jobLocation}">
+                </div>
+                <div class="list">
+                    <input type="text" name="language" id="language" class="language" placeholder="Language Requirements" required="" th:field="*{languageRequirements}">
+                </div>
+                <div class="list-last">
+                    <input type="submit" name="add_job" class="add_job" value="Add Job"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+(function() {
+  var ws = new WebSocket('ws://' + window.location.host +
+             '/jb-server-page?reloadMode=RELOAD_ON_SAVE&'+
+             'referrer=' + encodeURIComponent(window.location.pathname));
+  ws.onmessage = function (msg) {
+      if (msg.data === 'reload') {
+          window.location.reload();
+      }
+      if (msg.data.startsWith('update-css ')) {
+          var messageId = msg.data.substring(11);
+          var links = document.getElementsByTagName('link');
+          for (var i = 0; i < links.length; i++) {
+              var link = links[i];
+              if (link.rel !== 'stylesheet') continue;
+              var clonedLink = link.cloneNode(true);
+              var newHref = link.href.replace(/(&|\?)jbUpdateLinksId=\d+/, "$1jbUpdateLinksId=" + messageId);
+              if (newHref !== link.href) {
+                clonedLink.href = newHref;
+              }
+              else {
+                var indexOfQuest = newHref.indexOf('?');
+                if (indexOfQuest >= 0) {
+                  // to support ?foo#hash
+                  clonedLink.href = newHref.substring(0, indexOfQuest + 1) + 'jbUpdateLinksId=' + messageId + '&' +
+                                    newHref.substring(indexOfQuest + 1);
+                }
+                else {
+                  clonedLink.href += '?' + 'jbUpdateLinksId=' + messageId;
+                }
+              }
+              link.replaceWith(clonedLink);
+          }
+      }
+  };
+})();
+</script></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
