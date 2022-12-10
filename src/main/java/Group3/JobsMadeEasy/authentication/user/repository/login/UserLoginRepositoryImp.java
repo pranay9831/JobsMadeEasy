@@ -24,6 +24,7 @@ public class UserLoginRepositoryImp extends JdbcDaoSupport implements IUserLogin
 
     @Override
     public User checkLoginDetails(Login login) {
+        System.out.println(login.getEmailId() + "oooo" + login.getPassword());
         String sql = "SELECT * FROM user u INNER JOIN role r ON u.roleId = r.roleId WHERE emailId = ? AND  password = ?";
             return getJdbcTemplate().queryForObject(sql, (rs, rwNumber) -> {
                 User user = new User();
