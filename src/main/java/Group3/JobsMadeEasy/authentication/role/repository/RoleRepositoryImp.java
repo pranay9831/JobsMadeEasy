@@ -2,7 +2,6 @@ package Group3.JobsMadeEasy.authentication.role.repository;
 
 import Group3.JobsMadeEasy.authentication.role.model.Role;
 import Group3.JobsMadeEasy.authentication.role.model.RoleMapper;
-import Group3.JobsMadeEasy.job_post.model.JobPost;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Service;
 

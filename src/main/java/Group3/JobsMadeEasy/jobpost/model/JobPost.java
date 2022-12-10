@@ -1,4 +1,4 @@
-package Group3.JobsMadeEasy.job_post.model;
+package Group3.JobsMadeEasy.jobpost.model;
 
 public class JobPost
 {
@@ -37,54 +37,64 @@ public class JobPost
         return jobTitle;
     }
 
-    public String getSalary() {
+    public String getSalary()
+    {
         return salary;
     }
 
-    public String getJobType() {
+    public String getJobType()
+    {
         return jobType;
     }
 
-    public String getJobDescription() {
+    public String getJobDescription()
+    {
         return jobDescription;
     }
 
-    public String getJobLocation() {
+    public String getJobLocation()
+    {
         return jobLocation;
     }
 
-    public String getLanguageRequirements() {
+    public String getLanguageRequirements()
+    {
         return languageRequirements;
     }
 
-    public void setJobPostId(int jobPostId) {
+    public void setJobPostId(int jobPostId)
+    {
         this.jobPostId = jobPostId;
     }
 
-    public void setJobTitle(String jobTitle) {
+    public void setJobTitle(String jobTitle)
+    {
         this.jobTitle = jobTitle;
     }
 
-    public void setSalary(String salary) {
+    public void setSalary(String salary)
+    {
         this.salary = salary;
     }
 
-    public void setJobType(String jobType) {
+    public void setJobType(String jobType)
+    {
         this.jobType = jobType;
     }
 
-    public void setJobDescription(String jobDescription) {
+    public void setJobDescription(String jobDescription)
+    {
         this.jobDescription = jobDescription;
     }
 
-    public void setJobLocation(String jobLocation) {
+    public void setJobLocation(String jobLocation)
+    {
         this.jobLocation = jobLocation;
     }
 
     public void setLanguageRequirements(String languageRequirements) {
         this.languageRequirements = languageRequirements;
     }
-
 
     @Override
     public String toString() {
@@ -98,5 +108,4 @@ public class JobPost
                 ", languageRequirements='" + languageRequirements + '\'' +
                 '}';
     }
-
 }
