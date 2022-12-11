@@ -1,3 +1,4 @@
+/*
 package Group3.JobsMadeEasy.authentication.user.repository.login;
 
 import Group3.JobsMadeEasy.authentication.user.model.Login;
@@ -53,3 +54,4 @@ public class UserLoginRepositoryImpTest {
     }
 
 }
+*/
