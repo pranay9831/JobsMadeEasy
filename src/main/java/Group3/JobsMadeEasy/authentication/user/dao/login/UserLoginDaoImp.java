@@ -28,6 +28,6 @@ public class UserLoginDaoImp implements IUserLoginDao{
                 ROLE_ID_COLUMN + " = " + ROLE_TABLE + "." + ROLE_ID_COLUMN +
                 " WHERE "+ USER_EMAIL_ID_COLUMN + " = " + "\""+ login.getEmailId()
                 +"\"" + " AND " + USER_PASSWORD_COLUMN + " = " + "\"" + login.getPassword()
-                +"\"";
+                +"\";";
     }
 }
