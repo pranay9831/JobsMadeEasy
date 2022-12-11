@@ -25,6 +25,12 @@
             <td><h4 th:text="${jobPosts.salary}"></h4></td>
             <td><h4 th:text="${jobPosts.jobLocation}"></h4></td>
             <td><h4 th:text="${jobPosts.languageRequirements}"></h4></td>
+            <td>
+                <form th:action="@{/update_job_post/{id}(id=${jobPosts.jobPostId})}" method="get">
+                    <button type="submit" class="button--delete" th:attr="data-post-id=${jobPosts.jobPostId}">Update Job</button>
+                </form>
+
+            </td>
         </tr>
     </table>
 </body>
