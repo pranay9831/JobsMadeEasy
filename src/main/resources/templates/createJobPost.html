@@ -5,19 +5,9 @@
 <head>
 
     <meta charset="utf-8">
-    <title>Registration for Jobs made easy</title>
-    <!-- Mobile Specific Metas -->
+    <title>Create Job post Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!-- Font-->
-        <link rel="stylesheet" type="text/css" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
-    <!-- Main Style Css -->
-<!--    <link th:href="@{/style/project.css}" type="text/css" rel="stylesheet" />-->
-    <style id="__web-inspector-hide-shortcut-style__">
-.__web-inspector-hide-shortcut__, .__web-inspector-hide-shortcut__ *, .__web-inspector-hidebefore-shortcut__::before, .__web-inspector-hideafter-shortcut__::after
-{
-    visibility: hidden !important;
-}
-</style></head>
+</head>
 <body class="registration_form" data-new-gr-c-s-check-loaded="14.1087.0" data-gr-ext-installed="">
 <div class="new_user_form">
     <div class="content">
@@ -51,18 +41,24 @@
                     <input type="text" name="language" id="language" class="language" placeholder="Language Requirements" required="" th:field="*{languageRequirements}">
                 </div>
                 <div class="list-last">
-                    <button>
-                        <a th:href="@{/hr_home_page}" onclick="clickFunction()">CREATE JOB POST</a><br>
-                    </button>
+                    <button type="submit" class="button" onclick="clickFunction()" >CREATE JOB POST</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
 <script>
-    function clickFunction() {
-        alert("Job post created successfully.!!");
-    }
+    // function clickFunction() {
+    //     alert("Job post created successfully.!!");
+    // }
+    // const submitBtn=document.querySelector(".button")
+    // submitBtn.addEventListener("click", clickFunction)
+    //
+    // function clickFunction(e) {
+    //     e.preventDefault()
+    //     alert("Job post created successfully.!!");
+    //     location.href="http://localhost:8000/hr_home_page"
+    // }
 </script>
 </body>
 </html>

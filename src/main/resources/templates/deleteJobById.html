@@ -27,12 +27,15 @@
         <td><h4 th:text="${jobPosts.jobLocation}"></h4></td>
         <td><h4 th:text="${jobPosts.languageRequirements}"></h4></td>
         <td>
-            <button type="submit" class="button--delete" th:attr="data-post-id=${jobPosts.jobPostId}">Delete job</button>
+            <button type="submit" class="button--delete" onclick="clickFunction()" th:attr="data-post-id=${jobPosts.jobPostId}">Delete job</button>
         </td>
     </tr>
 </table>
 
 <script>
+    function clickFunction() {
+        alert("Job post deleted successfully.!!");
+    }
     const deleteButtonsList = document.querySelectorAll(".button--delete");
     console.log(deleteButtonsList);
     deleteButtonsList.forEach(deleteButton => {
