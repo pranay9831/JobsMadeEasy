@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"><head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style> table, th, tr,td {
+        border: 2px solid black;}</style>
+</head>
+<body>
+<h1>View All Jobs Here</h1>
+    <table border="2px solid black" style="float:left">
+        <tr>
+            <th>availabilityId</th>
+            <th>availableDays</th>
+            <th>availableHours</th>
+            <th>userId</th>
+
+        </tr>
+        <tr th:each="availability:${availabilities}">
+            <th><h4 th:text="${availability.availabilityId}"></h4></th>
+            <td><h4 th:text="${availability.availableDays}"></h4></td>
+            <td><h4 th:text="${availability.availableHours}"></h4></td>
+            <td><h4 th:text="${availability.userId}"></h4></td>
+
+        </tr>
+    </table>
+</body>
+</html>
