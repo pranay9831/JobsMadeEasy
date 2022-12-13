@@ -38,17 +38,9 @@ public class Role {
         this.roleName = roleName;
     }
 
-    @Override
-    public String toString() {
-        return "Role{" +
-                "roleId='" + roleId + '\'' +
-                ", roleName='" + roleName + '\'' +
-                '}';
-    }
-
     public boolean createRole(Role role) throws JobsMadeEasyException {
         if (role == null) {
-            throw new JobsMadeEasyException("user register details not found..");
+            throw new JobsMadeEasyException("role details not found..");
         }
         return roleDao.createRole(role);
     }
@@ -70,7 +62,7 @@ public class Role {
             return roleDao.deleteRoleById(id);
         }else
         {
-            throw new JobsMadeEasyException("No job post found with given id.!!");
+            throw new JobsMadeEasyException("No role found in DB");
         }
     }
 }

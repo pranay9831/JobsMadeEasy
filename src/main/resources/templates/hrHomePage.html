@@ -1,30 +1,78 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet">
     <title>Title</title></head>
+<style>
+    h1 {
+        background-color: cadetblue;
+    }
+
+    .Home-div {
+        text-align: center;
+    }
+
+    .each-btn {
+        margin: 10px;
+    }
+
+    .each-btn {
+        text-color: red;
+    }
+</style>
 <body>
-<div>
-  <h1> Welcome HR </h1>
-    <div class="list-last">
-        <a href="/create_job_post">Create job post</a><br>
-    </div>
-    <div class="list-last">
-        <a href="/view_all_jobs">View All Jobs</a><br>
-    </div>
-    <div class="list-last">
-            <a href="/delete_job_by_id">Delete Job Post</a>
-    </div>
-    <div class="list-last">
-        <a>View All Applications</a>
-    </div>
-    <div class="list-last">
-        <a>View Availability</a>
-    </div>
-    <div class="list-last">
-        <a href="/logout" onclick="A()" id="btn">Logout</a>
-    </div>
+
+<div class="Home-div">
+    <h1 style="
+    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-top: 20px;
+    margin-top: 0px;
+"> Welcome HR </h1>
+
+    <form class="each-btn" action="/create_job_post">
+        <input type="submit" value="Create job post" style="
+    padding-top: 10px;
+    padding-bottom: 10px;">
+    </form>
+
+    <form class="each-btn" action="/view_all_jobs">
+        <input type="submit" value="View All Job Posts" style="
+    padding-top: 10px;
+    padding-bottom: 10px;">
+    </form>
+
+    <form class="each-btn" action="/delete_job_by_id">
+        <input type="submit" value="Delete Job Posts" style="
+    padding-top: 10px;
+    padding-bottom: 10px;">
+    </form>
+
+    <form class="each-btn" action="/view_all_application">
+        <input type="submit" value="View all application" style="
+    padding-top: 10px;
+    padding-bottom: 10px;">
+    </form>
+
+    <form class="each-btn" action="/view_all_users">
+        <input type="submit" value="View All Users" style="
+    padding-top: 10px;
+    padding-bottom: 10px;">
+    </form>
+
+    <form class="each-btn" action="/view_all_availability">
+        <input type="submit" value="View Availabilities of applicant" style="
+    padding-top: 10px;
+    padding-bottom: 10px;">
+    </form>
+
+    <form class="each-btn" action="/logout">
+        <input type="submit" onclick="A()" id="btn" value="Logout" style="
+    padding-top: 10px;
+    padding-bottom: 10px;
+color: red">
+    </form>
 
 </div>
 <script>
