@@ -2,6 +2,7 @@ package Group3.JobsMadeEasy.authentication.user.model;
 
 import Group3.JobsMadeEasy.authentication.user.dao.login.IUserLoginDao;
 import Group3.JobsMadeEasy.authentication.user.dao.registration.IUserRegistrationDao;
+import Group3.JobsMadeEasy.util.GenerateIdUtil;
 import Group3.JobsMadeEasy.util.JobsMadeEasyException;
 import org.springframework.stereotype.Component;
 
@@ -162,29 +163,10 @@ public class User {
         isApproved = approved;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", emailId='" + emailId + '\'' +
-                ", password='" + password + '\'' +
-                ", city='" + city + '\'' +
-                ", province='" + province + '\'' +
-                ", address='" + address + '\'' +
-                ", postalCode='" + postalCode + '\'' +
-                ", roleID=" + roleId +
-                ", isEmployee=" + isEmployee +
-                ", isApproved=" + isApproved +
-                '}';
-    }
-
     public String checkLoginDetails(Login login) throws SQLException, JobsMadeEasyException {
         String role = this.userLoginDao.checkLoginDetails(login);
         if(role == null){
-            return "index";
+            return "redirect:/login?success";
         }else{
             return checkCurrentUserRole(role);
         }
@@ -196,13 +178,27 @@ public class User {
     public String createUser(User user) throws JobsMadeEasyException {
         if (user == null) {
             throw new JobsMadeEasyException("user register details not found..");
+        }else{
+            user.setUserId(GenerateIdUtil.Object().generateRandomId());
+            user.setFirstName(user.getFirstName());
+            user.setLastName(user.getLastName());
+            user.setPhoneNumber(user.getPhoneNumber());
+            user.setEmailId(user.getEmailId());
+            user.setPassword(user.getPassword());
+            user.setCity(user.getCity());
+            user.setProvince(user.getProvince());
+            user.setAddress(user.getAddress());
+            user.setPostalCode(user.getPostalCode());
+            user.setRoleId(1);
+            user.setEmployee(false);
+            user.setApproved(false);
         }
         return this.userRegistrationDao.createUser(user);
     }
 
     public Optional<User> getUserById(int id) throws JobsMadeEasyException, SQLException {
         if (id == 0) {
-            throw new JobsMadeEasyException("No role found in DB");
+            throw new JobsMadeEasyException("No User found in DB");
         }
         return this.userRegistrationDao.getUserById(id);
     }
