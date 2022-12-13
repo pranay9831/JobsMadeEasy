@@ -1,4 +1,4 @@
-package Group3.JobsMadeEasy.availability.dao;
+package Group3.JobsMadeEasy.availability.querygenerator;
 
 public class AvailabilityConstant {
     public static final String AVAILABILITY_TABLE =

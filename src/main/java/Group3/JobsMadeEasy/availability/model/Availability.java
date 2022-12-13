@@ -1,10 +1,16 @@
 package Group3.JobsMadeEasy.availability.model;
+import Group3.JobsMadeEasy.availability.dao.IAvailabilityDao;
+import Group3.JobsMadeEasy.util.JobsMadeEasyException;
+import java.sql.SQLException;
+import java.util.List;
 
 public class Availability {
     private int availabilityId;
     private int availableDays;
     private String availableHours;
     private int userId;
+
+    private IAvailabilityDao availabilityDao;
 
 
     public Availability(int availabilityId, int availableDays, String availableHours, int userId)
@@ -15,6 +21,11 @@ public class Availability {
         this.userId = userId;
 
     }
+
+    public Availability(IAvailabilityDao availabilityDao) {
+        this.availabilityDao = availabilityDao;
+    }
+
     public Availability(){
 
     }
@@ -55,4 +66,38 @@ public class Availability {
                 ", userId='" + userId + '\'' +
                 '}';
     }
+
+    public String createAvailability(Availability availability, int id) throws JobsMadeEasyException {
+
+        if (availability == null)
+        {
+            throw new JobsMadeEasyException("no such availability found");
+        }
+
+        return this.availabilityDao.createAvailability(availability, id);
+
+
+
+    }
+
+    public List<Availability> getAllAvailability() throws JobsMadeEasyException, SQLException {
+        return this.availabilityDao.viewAllAvailability();
+
+
+    }
+    public List<Availability> getMyAvailability( int id) throws JobsMadeEasyException, SQLException {
+
+        if (id == 0) {
+            throw new JobsMadeEasyException("No Availability found in DB");
+        }
+        return availabilityDao.viewAvailabilityById(id);
+
+    }
+
+    public boolean deleteAvailabilityById(int id) throws JobsMadeEasyException, SQLException {
+
+    return availabilityDao.deleteAvailabilityById(id);
+    }
+
+
 }
