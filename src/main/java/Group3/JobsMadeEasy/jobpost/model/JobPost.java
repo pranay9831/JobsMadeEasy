@@ -1,6 +1,7 @@
 package Group3.JobsMadeEasy.jobpost.model;
 
 import Group3.JobsMadeEasy.jobpost.dao.IJobPostDao;
+import Group3.JobsMadeEasy.util.GenerateIdUtil;
 import Group3.JobsMadeEasy.util.JobsMadeEasyException;
 import org.springframework.stereotype.Component;
 
@@ -127,6 +128,16 @@ public class JobPost
     {
         if (jobPost == null) {
             throw new JobsMadeEasyException("Failed to add job post!!");
+        }
+        else
+        {
+            jobPost.setJobPostId(GenerateIdUtil.Object().generateRandomId());
+            jobPost.setJobTitle(jobPost.getJobTitle());
+            jobPost.setSalary(jobPost.getSalary());
+            jobPost.setJobType(jobPost.getJobType());
+            jobPost.setJobDescription(jobPost.getJobDescription());
+            jobPost.setJobLocation(jobPost.getJobLocation());
+            jobPost.setLanguageRequirements(jobPost.getLanguageRequirements());
         }
         return this.jobPostDao.createJobPost(jobPost);
 

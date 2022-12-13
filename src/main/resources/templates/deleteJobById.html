@@ -3,12 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style> table, th, tr,td {
-        border: 2px solid black;}</style>
+    <style>
+        #delete-table tr:nth-child(even)
+        {
+            background-color: #cccccc;
+        }
+
+        #delete-table tr:hover
+        {
+            background-color: #f2f2f2;
+        }
+
+        #delete-table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: cadetblue;
+            color: white;
+        }
+
+    </style>
 </head>
 <body>
-<h1>Delete Jobs Here</h1>
-<table border="2px solid black">
+<h1>Delete uploaded job posts.</h1>
+<table border="2px solid black" id="delete-table">
     <tr>
         <th>jobPostId</th>
         <th>jobTitle</th>
