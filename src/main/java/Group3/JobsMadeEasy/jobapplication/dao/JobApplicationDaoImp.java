@@ -26,7 +26,7 @@ public class JobApplicationDaoImp implements IJobApplicationDao {
     private final Statement statement;
     private final HttpSession session;
 
-    public JobApplicationDaoImp(IJobApplicationQueryGenerator jobApplicationDao, DatabaseSetup databaseSetup, HttpSession session, HttpSession session1, IJobApplicationQueryGenerator jobApplicationQueryGenerator) throws
+    public JobApplicationDaoImp(IJobApplicationQueryGenerator jobApplicationDao, DatabaseSetup databaseSetup, HttpSession session, IJobApplicationQueryGenerator jobApplicationQueryGenerator) throws
             SQLException, IOException, ClassNotFoundException, JobsMadeEasyException {
         this.jobApplicationQueryGenerator = jobApplicationQueryGenerator;
         this.databaseSetup = databaseSetup;
@@ -35,6 +35,7 @@ public class JobApplicationDaoImp implements IJobApplicationDao {
         this.statement = connection.createStatement();
     }
 
+    @Override
     public String createJobApplication(JobApplication jobApplication) throws JobsMadeEasyException, SQLException {
 
         jobApplication.setApplicationId(GenerateIdUtil.Object().generateRandomId());
