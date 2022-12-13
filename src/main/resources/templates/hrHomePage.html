@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet">
+    <title>Title</title></head>
+<body>
+<div>
+  <h1> Welcome HR </h1>
+    <div class="list-last">
+        <a href="/create_job_post">Create job post</a><br>
+    </div>
+    <div class="list-last">
+        <a href="/view_all_jobs">View All Jobs</a><br>
+    </div>
+    <div class="list-last">
+            <a href="/delete_job_by_id">Delete Job Post</a>
+    </div>
+    <div class="list-last">
+        <a>View All Applications</a>
+    </div>
+    <div class="list-last">
+        <a>View Availability</a>
+    </div>
+    <div class="list-last">
+        <a href="/logout" onclick="A()" id="btn">Logout</a>
+    </div>
+
+</div>
+<script>
+    function A() {
+
+
+        function logoutFunction() {
+            window.history.forward()
+        }
+
+        logoutFunction();
+        window.onload = logoutFunction;
+        window.onpageshow = function (evt) {
+            if (evt.persisted) logoutFunction()
+        }
+        window.onunload = function () {
+            void (0)
+        }
+    }
+</script>
+</body>
