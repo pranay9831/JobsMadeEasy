@@ -74,7 +74,7 @@ public class AvailabilityController {
             String createUserQuery = availabilityDao.createAvailability(availability);
             int updatedRows = statement.executeUpdate(createUserQuery, Statement.RETURN_GENERATED_KEYS);
             if(updatedRows > 0){
-                return "index";
+                return "availabilityHomePage";
             }
         } catch (SQLException e) {
             throw new JobsMadeEasyException(e.getMessage());
@@ -157,6 +157,8 @@ public class AvailabilityController {
                 //statement.close();
             }
         }
+
+
 
 
 
