@@ -1,64 +1,134 @@
 package Group3.JobsMadeEasy.availability.dao;
 
 import Group3.JobsMadeEasy.availability.model.Availability;
+import Group3.JobsMadeEasy.availability.model.AvailabilityUserName;
+import Group3.JobsMadeEasy.availability.querygenerator.IAvailabilityQueryGenerator;
+import Group3.JobsMadeEasy.database.repository.DatabaseSetup;
+import Group3.JobsMadeEasy.util.GenerateIdUtil;
+import Group3.JobsMadeEasy.util.JobsMadeEasyException;
 import org.springframework.stereotype.Component;
-
-import static Group3.JobsMadeEasy.authentication.user.querygenerator.registration.UserRegistrationConstant.USER_ID_COLUMN;
-import static Group3.JobsMadeEasy.availability.dao.AvailabilityConstant.*;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
 
 @Component
-public class AvailabilityDaoImp implements IAvailabilityDao {
+public class AvailabilityDaoImp implements IAvailabilityDao{
 
-    private static AvailabilityDaoImp obj;
+    private final IAvailabilityQueryGenerator availabilityQueryGenerator;
+    private final DatabaseSetup databaseSetup;
+    private final Connection connection;
+    private final Statement statement;
 
-    private AvailabilityDaoImp() {
+    public AvailabilityDaoImp(IAvailabilityQueryGenerator availabilityQueryGenerator, DatabaseSetup databaseSetup) throws SQLException, IOException, ClassNotFoundException {
+        this.availabilityQueryGenerator = availabilityQueryGenerator;
+        this.databaseSetup = databaseSetup;
+        this.connection = databaseSetup.getConnectionObject();
+        this.statement = connection.createStatement();
     }
 
-    public static AvailabilityDaoImp getInstance() {
-        if (obj == null) {
-            obj = new AvailabilityDaoImp();
+    @Override
+    public String createAvailability(Availability availability, int id) throws JobsMadeEasyException {
+
+
+        availability.setAvailabilityId(GenerateIdUtil.Object().generateRandomId());
+        availability.setAvailableDays(availability.getAvailableDays());
+        availability.setAvailableHours(availability.getAvailableHours());
+        availability.setUserId(id);
+
+        try{
+            String createUserQuery = availabilityQueryGenerator.createAvailability(availability);
+            int updatedRows = statement.executeUpdate(createUserQuery, Statement.RETURN_GENERATED_KEYS);
+            if(updatedRows > 0){
+                return "availabilityHomePage";
+            }
+        } catch (SQLException e) {
+            throw new JobsMadeEasyException(e.getMessage());
+        }finally {
+            databaseSetup.closeDatabaseConnection();
         }
-        return obj;
-    }
-
-    @Override
-    public String createAvailability(Availability availability) {
-        return "INSERT INTO "+ AVAILABILITY_TABLE+
-                " (" + AVAILABILITY_ID_COLUMN + "," +
-                AVAILABLE_DAYS_COLUMN + "," +
-                AVAILABLE_HOURS_COLUMN + "," +
-                USER_ID_COLUMN+  ")" +
-                "VALUES (" +
-                "\"" + availability.getAvailabilityId() + "\"," +
-                "\"" + availability.getAvailableDays() + "\"," +
-                "\"" + availability.getAvailableHours() + "\"," +
-                "\"" + availability.getUserId() + "\"" +
-                ");";
-
+        return "availability";
 
     }
 
     @Override
-    public String viewAllAvailability() {
-        return  "SELECT * FROM " + AVAILABILITY_TABLE +";";
+    public List<AvailabilityUserName> viewAllAvailability() throws JobsMadeEasyException, SQLException {
 
+        ResultSet rs = null;
+        try {
+            String viewAllAvailabilityQuery = availabilityQueryGenerator.viewAllAvailability();
+            rs = statement.executeQuery(viewAllAvailabilityQuery);
+            List<AvailabilityUserName> availabilities = new LinkedList<>();
+            while(rs.next()){
+                int userId = rs.getInt("userId");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                int availableDays = rs.getInt("availableDays");
+                String availableHours = rs.getString("availableHours");
+//                int userId = rs.getInt("userId");
 
-
+                AvailabilityUserName availability = new AvailabilityUserName(userId, firstName,lastName,availableDays,availableHours);
+                //System.out.println(availability);
+                availabilities.add(availability);
+            }
+            System.out.println(availabilities);
+            return availabilities;
+        } catch (SQLException e) {
+            throw new JobsMadeEasyException(e.getMessage());
+        }finally {
+            databaseSetup.closeDatabaseConnection();
+            rs.close();
+        }
     }
 
     @Override
-    public String viewAvailabilityById(int id) {
-        return  "SELECT * FROM "+AVAILABILITY_TABLE+" WHERE "+USER_ID_COLUMN+" = " + id + ";";
+    public List<Availability> viewAvailabilityById(int id) throws JobsMadeEasyException, SQLException {
+        List<Availability> availabilities = null;
+        ResultSet rs = null;
+            try {
+                String viewAvailabilityByIdQuery = availabilityQueryGenerator.viewAvailabilityById(id);
+                rs = statement.executeQuery(viewAvailabilityByIdQuery);
+                availabilities = new LinkedList<>();
+                return getAvailabilities(availabilities, rs);
 
+            } catch (SQLException e) {
+                throw new JobsMadeEasyException(e.getMessage());
+            }finally {
+                databaseSetup.closeDatabaseConnection();
+                rs.close();
+            }
+        }
 
-    }
 
     @Override
-    public String deleteAvailabilityById(int id) {
-        return "DELETE FROM availability WHERE availabilityId = " + id + ";";
+    public boolean deleteAvailabilityById(int id) throws JobsMadeEasyException {
+        try {
+            String deleteAvailabilityByIdQuery = availabilityQueryGenerator.deleteAvailabilityById(id);
+            statement.executeUpdate(deleteAvailabilityByIdQuery);
+            return true;
+        } catch (SQLException e) {
+            throw new JobsMadeEasyException(e.getMessage());
+        }finally {
+            databaseSetup.closeDatabaseConnection();
 
+        }
     }
 
+    public List<Availability> getAvailabilities(List<Availability> availabilities, ResultSet rs) throws SQLException {
+        while(rs.next()){
+            int availabilityId = rs.getInt("availabilityId");
+            int availableDays = rs.getInt("availableDays");
+            String availableHours = rs.getString("availableHours");
+            int userId = rs.getInt("userId");
+
+            Availability availability = new Availability(availabilityId,availableDays,availableHours,userId);
+            availabilities.add(availability);
+        }
+        return availabilities;
+    }
 
 
 
