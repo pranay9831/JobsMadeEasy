@@ -16,7 +16,6 @@
     <div class="list-last">
             <a href="/delete_job_by_id">Delete Job Post</a>
     </div>
-
     <div class="list-last">
         <a>View All Applications</a>
     </div>
@@ -24,8 +23,26 @@
         <a>View Availability</a>
     </div>
     <div class="list-last">
-        <a href="/logout">Logout</a>
+        <a href="/logout" onclick="A()" id="btn">Logout</a>
     </div>
 
 </div>
+<script>
+    function A() {
+
+
+        function logoutFunction() {
+            window.history.forward()
+        }
+
+        logoutFunction();
+        window.onload = logoutFunction;
+        window.onpageshow = function (evt) {
+            if (evt.persisted) logoutFunction()
+        }
+        window.onunload = function () {
+            void (0)
+        }
+    }
+</script>
 </body>
