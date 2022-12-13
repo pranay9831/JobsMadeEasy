@@ -1,15 +1,9 @@
 package Group3.JobsMadeEasy.availability.dao;
 
 import Group3.JobsMadeEasy.availability.model.Availability;
-import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
-import javax.sql.DataSource;
-
-import static Group3.JobsMadeEasy.authentication.user.dao.registration.UserRegistrationConstant.USER_ID_COLUMN;
-import static Group3.JobsMadeEasy.authentication.user.dao.registration.UserRegistrationConstant.USER_TABLE;
+import static Group3.JobsMadeEasy.authentication.user.querygenerator.registration.UserRegistrationConstant.USER_ID_COLUMN;
 import static Group3.JobsMadeEasy.availability.dao.AvailabilityConstant.*;
 
 @Component

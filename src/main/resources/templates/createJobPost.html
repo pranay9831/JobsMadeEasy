@@ -5,90 +5,92 @@
 <head>
 
     <meta charset="utf-8">
-    <title>Registration for Jobs made easy</title>
-    <!-- Mobile Specific Metas -->
+    <title>Create Job post Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!-- Font-->
-        <link rel="stylesheet" type="text/css" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
-    <!-- Main Style Css -->
-<!--    <link th:href="@{/style/project.css}" type="text/css" rel="stylesheet" />-->
-    <style id="__web-inspector-hide-shortcut-style__">
-.__web-inspector-hide-shortcut__, .__web-inspector-hide-shortcut__ *, .__web-inspector-hidebefore-shortcut__::before, .__web-inspector-hideafter-shortcut__::after
-{
-    visibility: hidden !important;
-}
-</style></head>
+</head>
 <body class="registration_form" data-new-gr-c-s-check-loaded="14.1087.0" data-gr-ext-installed="">
 <div class="new_user_form">
     <div class="content">
-        <form method="post" th:object="${jobPost}" th:action="@{/add_job_post}">
+        <div id="errorMessage"></div>
+        <form method="post" id="form" th:action="@{/add_job_post}" th:object="${jobPost}">
 
             <div class="contact_details">
                 <h2>Job Details</h2>
                 <div class="list">
-                    <input type="text" name="job" class="job" id="job" placeholder="Job Title" required="" th:field="*{jobTitle}">
+                    <label>Job Title: </label><br>
+                    <input type="text" id="jobTitle" placeholder="Job Title"  th:field="*{jobTitle}">
                 </div>
                 <div class="list">
-                    <input type="text" name="salary" class="salary" id="address-line_one" placeholder="Salary" required="" th:field="*{salary}">
+                   <label>Salary: </label><br>
+                    <input type="text" id="salary" placeholder="Salary"  th:field="*{salary}">
                 </div>
                 <div class="list">
-                    <input type="text" name="jobType" class="jobType" id="jobType" placeholder="Job Type" required="" th:field="*{jobType}">
-
+                    <label>Type of Job: </label><br>
+                    <input type="text" id="jobType"placeholder="Job Type"  th:field="*{jobType}">
+                </div>
+                <div class="list" >
+                    <label>Job Description: </label><br>
+                    <input id="jobDescription" type="text"  style="height: 10rem; width: 30rem;" placeholder="Job Decription" th:field="*{jobDescription}">
                 </div>
                 <div class="list">
-                    <input name="jobDescription" type="text" class="jobDescription" id="jobDescription" required="" placeholder="Job Decription" th:field="*{jobDescription}">
-
-                </div>
-
-                <div class="list">
-                    <input type="text" name="jobLocation" id="jobLocation" class="jobLocation" placeholder="Job Location" required="" th:field="*{jobLocation}">
+                    <label>Job Location: </label><br>
+                    <input type="text" name="jobLocation" id="jobLocation" placeholder="Job Location"  th:field="*{jobLocation}">
                 </div>
                 <div class="list">
-                    <input type="text" name="language" id="language" class="language" placeholder="Language Requirements" required="" th:field="*{languageRequirements}">
+                    <label>Language Required: </label><br>
+                    <input type="text" name="language" id="language" placeholder="Language Requirements" th:field="*{languageRequirements}">
                 </div>
                 <div class="list-last">
-                    <input type="submit" name="add_job" class="add_job" value="Add Job"/>
+                    <button type="submit" class="button" onclick="clickFunction()" >CREATE JOB POST</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
-
-
 <script>
-(function() {
-  var ws = new WebSocket('ws://' + window.location.host +
-             '/jb-server-page?reloadMode=RELOAD_ON_SAVE&'+
-             'referrer=' + encodeURIComponent(window.location.pathname));
-  ws.onmessage = function (msg) {
-      if (msg.data === 'reload') {
-          window.location.reload();
-      }
-      if (msg.data.startsWith('update-css ')) {
-          var messageId = msg.data.substring(11);
-          var links = document.getElementsByTagName('link');
-          for (var i = 0; i < links.length; i++) {
-              var link = links[i];
-              if (link.rel !== 'stylesheet') continue;
-              var clonedLink = link.cloneNode(true);
-              var newHref = link.href.replace(/(&|\?)jbUpdateLinksId=\d+/, "$1jbUpdateLinksId=" + messageId);
-              if (newHref !== link.href) {
-                clonedLink.href = newHref;
-              }
-              else {
-                var indexOfQuest = newHref.indexOf('?');
-                if (indexOfQuest >= 0) {
-                  // to support ?foo#hash
-                  clonedLink.href = newHref.substring(0, indexOfQuest + 1) + 'jbUpdateLinksId=' + messageId + '&' +
-                                    newHref.substring(indexOfQuest + 1);
-                }
-                else {
-                  clonedLink.href += '?' + 'jbUpdateLinksId=' + messageId;
-                }
-              }
-              link.replaceWith(clonedLink);
-          }
-      }
-  };
-})();
-</script></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
+
+    const form= document.getElementById('form')
+    const title= document.getElementById('jobTitle')
+    const salary= document.getElementById('salary')
+    const jobType= document.getElementById('jobType')
+    const jobDescription= document.getElementById('jobDescription')
+    const jobLocation= document.getElementById('jobLocation')
+    const language= document.getElementById('language')
+    const errorMessage= document.getElementById('errorMessage')
+
+    form.addEventListener('submit', (e) => {
+        let messages = []
+        if (title.value === '' || title.value == null) {
+            messages.push('Title can not be empty!!')
+        }
+        if (salary.value === '' || salary.value == null) {
+            messages.push('Salary can not be empty!!')
+        }
+        if (jobType.value === '' || jobType.value == null) {
+            messages.push('Job title can not be empty!!')
+        }
+        if (jobDescription.value === '' || jobDescription.value == null) {
+            messages.push('Job description can not be empty!!')
+        }
+        if (jobDescription.value <20) {
+            messages.push('Job description should be in detail!!')
+        }
+        if (jobLocation.value === '' || jobLocation.value == null) {
+            messages.push('Job description can not be empty!!')
+        }
+        if (language.value === '' || language.value == null) {
+            messages.push('Language can not be empty!!')
+        }
+
+        if (messages.length > 0) {
+            e.preventDefault()
+            errorMessage.innerText = messages.join(' \n')
+        }
+        else {
+            alert("Job post created successfully.!!")
+        }
+    })
+
+</script>
+</body>
+</html>

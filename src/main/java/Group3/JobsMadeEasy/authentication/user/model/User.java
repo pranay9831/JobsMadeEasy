@@ -1,6 +1,19 @@
 package Group3.JobsMadeEasy.authentication.user.model;
 
+import Group3.JobsMadeEasy.authentication.user.dao.login.IUserLoginDao;
+import Group3.JobsMadeEasy.authentication.user.dao.registration.IUserRegistrationDao;
+import Group3.JobsMadeEasy.util.JobsMadeEasyException;
+import org.springframework.stereotype.Component;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
+
+@Component
 public class User {
+
+    private IUserLoginDao userLoginDao;
+    private IUserRegistrationDao userRegistrationDao;
     private int userId;
     private String firstName;
     private String lastName;
@@ -17,7 +30,9 @@ public class User {
     private boolean isEmployee;
     private boolean isApproved;
 
-    public User() {
+
+
+    public User(){
     }
 
     public User(int userId, String firstName, String lastName, String phoneNumber, String emailId, String password,
@@ -36,6 +51,11 @@ public class User {
         this.roleId = roleId;
         this.isEmployee = isEmployee;
         this.isApproved = isApproved;
+    }
+
+    public User(IUserLoginDao userLoginDao, IUserRegistrationDao userRegistrationDao) {
+        this.userLoginDao = userLoginDao;
+        this.userRegistrationDao = userRegistrationDao;
     }
 
     public int getUserId() {
@@ -159,5 +179,47 @@ public class User {
                 ", isEmployee=" + isEmployee +
                 ", isApproved=" + isApproved +
                 '}';
+    }
+
+    public String checkLoginDetails(Login login) throws SQLException, JobsMadeEasyException {
+        String role = this.userLoginDao.checkLoginDetails(login);
+        if(role == null){
+            return "index";
+        }else{
+            return checkCurrentUserRole(role);
+        }
+    }
+    public String checkCurrentUserRole(String roleName) {
+        return roleName + "HomePage";
+    }
+
+    public String createUser(User user) throws JobsMadeEasyException {
+        if (user == null) {
+            throw new JobsMadeEasyException("user register details not found..");
+        }
+        return this.userRegistrationDao.createUser(user);
+    }
+
+    public Optional<User> getUserById(int id) throws JobsMadeEasyException, SQLException {
+        if (id == 0) {
+            throw new JobsMadeEasyException("No role found in DB");
+        }
+        return this.userRegistrationDao.getUserById(id);
+    }
+
+    public List<User> getAllUsers() throws SQLException, JobsMadeEasyException {
+        return this.userRegistrationDao.getUsers();
+    }
+
+    public boolean deleteUserById(int id) throws SQLException, JobsMadeEasyException {
+        if (this.getUserById(id).isPresent())
+        {
+            return this.userRegistrationDao.deleteUserById(id);
+        }
+        return false;
+    }
+
+    public String logout() {
+        return this.userLoginDao.logout();
     }
 }

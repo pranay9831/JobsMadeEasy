@@ -1,8 +1,5 @@
 package Group3.JobsMadeEasy.availability.controller;
 
-import Group3.JobsMadeEasy.authentication.role.dao.IRoleDao;
-import Group3.JobsMadeEasy.authentication.user.model.User;
-import Group3.JobsMadeEasy.authentication.user.model.UserMapper;
 import Group3.JobsMadeEasy.availability.model.Availability;
 import Group3.JobsMadeEasy.availability.dao.IAvailabilityDao;
 
@@ -18,10 +15,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 
 @Controller

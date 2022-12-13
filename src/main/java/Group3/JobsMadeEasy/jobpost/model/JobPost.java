@@ -10,6 +10,11 @@ public class JobPost
     private String jobLocation;
     private String languageRequirements;
 
+    public JobPost()
+    {
+
+    }
+
     public JobPost(int jobPostId, String jobTitle, String salary, String jobType, String jobDescription,
                    String jobLocation, String languageRequirements)
     {
@@ -20,11 +25,6 @@ public class JobPost
         this.jobDescription = jobDescription;
         this.jobLocation = jobLocation;
         this.languageRequirements = languageRequirements;
-    }
-
-    public JobPost()
-    {
-
     }
 
     public int getJobPostId()
