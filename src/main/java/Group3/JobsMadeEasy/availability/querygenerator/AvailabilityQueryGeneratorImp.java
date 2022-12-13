@@ -55,7 +55,7 @@ public class AvailabilityQueryGeneratorImp implements IAvailabilityQueryGenerato
 
     @Override
     public String deleteAvailabilityById(int id) {
-        return "DELETE FROM " + AVAILABILITY_TABLE+ "WHERE " + AVAILABILITY_ID_COLUMN+" = " + id + ";";
+        return "DELETE FROM " + AVAILABILITY_TABLE+ " WHERE " + AVAILABILITY_ID_COLUMN+" = " + id + ";";
 
     }
 
