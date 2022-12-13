@@ -51,15 +51,15 @@ public class UserLoginDaoImp implements IUserLoginDao{
                 if(resultSet.next()){
                     session.setAttribute("role",resultSet.getString("roleName"));
                 }
+                return (String) session.getAttribute("role");
             }
-            return (String) session.getAttribute("role");
         } catch (SQLException e) {
             throw new JobsMadeEasyException(e.getMessage());
         }finally {
             databaseSetup.closeDatabaseConnection();
             rs.close();
-            resultSet.close();
         }
+        return null;
     }
 
     @Override

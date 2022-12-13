@@ -1,7 +1,6 @@
 package Group3.JobsMadeEasy.authentication.user.dao.registration;
 
 import Group3.JobsMadeEasy.authentication.user.model.User;
-import Group3.JobsMadeEasy.authentication.user.model.UserMapper;
 import Group3.JobsMadeEasy.authentication.user.querygenerator.registration.IUserRegistrationQueryGenerator;
 import Group3.JobsMadeEasy.database.repository.DatabaseSetup;
 import Group3.JobsMadeEasy.util.GenerateIdUtil;
@@ -36,19 +35,6 @@ public class UserRegistrationDaoImp implements IUserRegistrationDao {
 
     @Override
     public String createUser(User user) throws JobsMadeEasyException {
-        user.setUserId(GenerateIdUtil.Object().generateRandomId());
-        user.setFirstName(user.getFirstName());
-        user.setLastName(user.getLastName());
-        user.setPhoneNumber(user.getPhoneNumber());
-        user.setEmailId(user.getEmailId());
-        user.setPassword(user.getPassword());
-        user.setCity(user.getCity());
-        user.setProvince(user.getProvince());
-        user.setAddress(user.getAddress());
-        user.setPostalCode(user.getPostalCode());
-        user.setRoleId(1);
-        user.setEmployee(false);
-        user.setApproved(false);
         try {
             String createUserQuery = userRegistrationQueryGenerator.createUser(user);
             int updatedRows = statement.executeUpdate(createUserQuery, Statement.RETURN_GENERATED_KEYS);
@@ -71,7 +57,21 @@ public class UserRegistrationDaoImp implements IUserRegistrationDao {
             String getUserByIdQuery = userRegistrationQueryGenerator.getUserById(id);
             rs = statement.executeQuery(getUserByIdQuery);
             if(rs.next()){
-                return Optional.ofNullable(new UserMapper().mapRow(rs, rs.getRow()));
+                return Optional.of(new User(
+                        rs.getInt("userId"),
+                        rs.getString("firstName"),
+                        rs.getString("lastName"),
+                        rs.getString("phoneNumber"),
+                        rs.getString("emailId"),
+                        rs.getString("password"),
+                        rs.getString("city"),
+                        rs.getString("province"),
+                        rs.getString("address"),
+                        rs.getString("postalCode"),
+                        rs.getInt("roleId"),
+                        rs.getBoolean("isEmployee"),
+                        rs.getBoolean("isApproved")
+                ));
             }
         } catch (SQLException e) {
             throw new JobsMadeEasyException(e.getMessage());
