@@ -1,20 +1,20 @@
-package Group3.JobsMadeEasy.jobpost.repository;
+package Group3.JobsMadeEasy.jobpost.jobpostquerygenerator;
 import Group3.JobsMadeEasy.jobpost.model.JobPost;
 import org.springframework.stereotype.Repository;
-import static Group3.JobsMadeEasy.jobpost.repository.JobPostDaoConstant.*;
+import static Group3.JobsMadeEasy.jobpost.jobpostquerygenerator.JobPostConstant.*;
 
 @Repository
-public class JobPostDaoImp implements IJobPostDao
+public class JobPostQueryGeneratorImp implements IJobPostQueryGenerator
 {
-    private static JobPostDaoImp obj;
+    private static JobPostQueryGeneratorImp obj;
 
-    public JobPostDaoImp()
+    public JobPostQueryGeneratorImp()
     {
     }
 
-    public static JobPostDaoImp getInstance() {
+    public static JobPostQueryGeneratorImp getInstance() {
         if (obj == null) {
-            obj = new JobPostDaoImp();
+            obj = new JobPostQueryGeneratorImp();
         }
         return obj;
     }

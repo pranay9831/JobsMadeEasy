@@ -1,9 +1,9 @@
-package Group3.JobsMadeEasy.jobpost.repository;
+package Group3.JobsMadeEasy.jobpost.jobpostquerygenerator;
 
 import Group3.JobsMadeEasy.jobpost.model.JobPost;
 
 
-public interface IJobPostDao
+public interface IJobPostQueryGenerator
 {
     String createJobPost(JobPost jobPost);
     String viewAllJobs();
