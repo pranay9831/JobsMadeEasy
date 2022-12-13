@@ -6,7 +6,7 @@
         border: 2px solid black;}</style>
 </head>
 <body>
-<h1>View All Jobs Here</h1>
+<h1>All applications for available jobs</h1>
 <table border="2px solid black" style="float:left">
     <tr>
         <th>Application Id</th>
@@ -23,7 +23,7 @@
         <th>Expertise Two</th>
         <th>Expertise Three</th>
     </tr>
-    <tr th:each="jobApplication:${jobApplication}">
+    <tr th:each="jobApplication:${jobApplications}">
         <th><h4 th:text="${jobApplication.applicationId}"></h4></th>
         <td><h4 th:text="${jobApplication.firstName}"></h4></td>
         <td><h4 th:text="${jobApplication.lastName}"></h4></td>
@@ -37,13 +37,8 @@
         <td><h4 th:text="${jobApplication.expertOne}"></h4></td>
         <td><h4 th:text="${jobApplication.expertTwo}"></h4></td>
         <td><h4 th:text="${jobApplication.expertThree}"></h4></td>
-<!--        <td>-->
-<!--        <form th:action="@{/update_job_post/{id}(id=${jobPosts.jobPostId})}" method="get">&ndash;&gt;&ndash;&gt;-->
-<!--        <button type="submit" class="button" delete" th:attr="data-post-id=${jobPosts.jobPostId}">Update Job</button>&ndash;&gt;&ndash;&gt;-->
-<!--        </form>-->
-
-<!--        </td>-->
     </tr>
 </table>
+
 </body>
 </html>

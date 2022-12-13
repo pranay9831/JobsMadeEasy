@@ -39,13 +39,6 @@ public class IJobPostDaoImp implements IJobPostDao {
 
     @Override
     public String createJobPost(JobPost jobPost) throws JobsMadeEasyException {
-        jobPost.setJobPostId(GenerateIdUtil.Object().generateRandomId());
-        jobPost.setJobTitle(jobPost.getJobTitle());
-        jobPost.setSalary(jobPost.getSalary());
-        jobPost.setJobType(jobPost.getJobType());
-        jobPost.setJobDescription(jobPost.getJobDescription());
-        jobPost.setJobLocation(jobPost.getJobLocation());
-        jobPost.setLanguageRequirements(jobPost.getLanguageRequirements());
         try {
             String createJobPostQuery = jobPostQueryGenerator.createJobPost(jobPost);
             int updatedRowsInTable = statement.executeUpdate(createJobPostQuery, Statement.RETURN_GENERATED_KEYS);
