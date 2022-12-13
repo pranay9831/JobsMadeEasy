@@ -1,4 +1,4 @@
-package Group3.JobsMadeEasy.authentication.user.dao.registration;
+package Group3.JobsMadeEasy.authentication.user.querygenerator.registration;
 
 public class UserRegistrationConstant {
 

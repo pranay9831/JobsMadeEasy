@@ -1,4 +1,4 @@
-package Group3.JobsMadeEasy.authentication.user.dao.login;
+package Group3.JobsMadeEasy.authentication.user.querygenerator.login;
 
 public class UserLoginConstant {
 

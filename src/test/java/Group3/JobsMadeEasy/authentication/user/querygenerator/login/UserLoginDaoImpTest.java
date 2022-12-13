@@ -1,4 +1,4 @@
-package Group3.JobsMadeEasy.authentication.user.dao.login;
+package Group3.JobsMadeEasy.authentication.user.querygenerator.login;
 
 import Group3.JobsMadeEasy.authentication.user.model.Login;
 import org.junit.jupiter.api.Assertions;
@@ -12,7 +12,7 @@ public class UserLoginDaoImpTest {
         String email = "A@gmail.com";
         String password = "1234";
         Login login = new Login(email,password);
-        UserLoginDaoImp userLoginDaoImp = UserLoginDaoImp.getInstance();
+        UserLoginQueryGeneratorImp userLoginDaoImp = UserLoginQueryGeneratorImp.getInstance();
         String queryGenerated = userLoginDaoImp.checkLoginDetails(login);
         String queryExpected = "SELECT * FROM user INNER JOIN role ON user.roleId = role.roleId WHERE emailId = " +
                 "\"" +email+ "\"" +

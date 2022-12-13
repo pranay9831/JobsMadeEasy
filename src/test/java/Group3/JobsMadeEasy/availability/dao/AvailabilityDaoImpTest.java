@@ -1,7 +1,5 @@
 package Group3.JobsMadeEasy.availability.dao;
 
-import Group3.JobsMadeEasy.authentication.role.dao.RoleDaoImp;
-import Group3.JobsMadeEasy.authentication.role.model.Role;
 import Group3.JobsMadeEasy.availability.model.Availability;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

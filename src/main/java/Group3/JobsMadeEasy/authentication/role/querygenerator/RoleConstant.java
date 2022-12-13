@@ -1,6 +1,6 @@
-package Group3.JobsMadeEasy.authentication.role.dao;
+package Group3.JobsMadeEasy.authentication.role.querygenerator;
 
-public class RoleDaoConstant {
+public class RoleConstant {
 
     public static final String ROLE_TABLE =
             "role";
