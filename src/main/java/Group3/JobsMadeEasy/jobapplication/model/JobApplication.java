@@ -29,6 +29,7 @@ public class JobApplication {
     private IJobApplicationDao getJobApplicationDao;
 
     public JobApplication (IJobApplicationDao jobApplicationDao){
+
         this.jobApplicationDao=jobApplicationDao;
     }
 
@@ -194,7 +195,7 @@ public class JobApplication {
 
     public List<JobApplication> getAllJobApplication() throws SQLException, JobsMadeEasyException {
 
-        return this.getJobApplicationDao.getJobApplication();
+        return this.jobApplicationDao.getJobApplication();
     }
 
     public boolean deleteJobApplicationById(int id) throws JobsMadeEasyException, SQLException {

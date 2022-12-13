@@ -5,27 +5,24 @@
 <head>
     <meta charset="utf-8">
     <title>Registration for Jobs made easy</title>
-    <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!-- Font-->
     <link rel="stylesheet" href="/style/project.css">
-    <!--    <link rel="stylesheet" type="text/css" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">-->
-    <!-- Main Style Css -->
     <link rel="stylesheet" th:href="@{src/main/resources/templates/project.css}"/>
 </head>
 <body class="registration_form">
 <div class="new_user_form">
     <div class="content">
         <form class="user_details" method="post" id="proj_form" th:action="@{/auth/register}" th:object="${user}">
+            <div class="nav_bar">
+                <ul>
+                    <li><a class="active" href="/index">Home Page</a></li>
+                    <li><a class="active_2" href="/register">Register</a></li>
+                    <li><a class="active_1" href="/login">Login</a></li>
+                </ul>
+            </div>
             <div class="general_details">
                 <h2>Applicant Registration</h2>
                 <div class="list">
-<!--                    <select name="title">-->
-<!--                        <option class="option" value="title">Title</option>-->
-<!--                        <option class="option" value="miss">Miss</option>-->
-<!--                        <option class="option" value="mrs.">Mrs.</option>-->
-<!--                        <option class="option" value="mr.">Mr</option>-->
-<!--                    </select>-->
                     <span class="title_button">
    	<i class="drop_down"></i>
  </span>
@@ -35,32 +32,17 @@
                         <input type="text" name="firstName" id="firstName" class="firstName" placeholder="First Name" th:field="*{firstName}">
                     </div>
                     <div class="list list-2">
-                        <input type="text" name="last_name" id="last_name" class="input-text" placeholder="Last Name" th:field="*{lastName}" >
+                        <input type="text" name="last_name" id="last_name" class="lastName" placeholder="Last Name" th:field="*{lastName}" >
                     </div>
                 </div>
                <div class="list">
-<!--                    <select name="education_history">-->
-<!--                        <option value="education_history">Highest level on Education</option>-->
-<!--                        <option value="master">Master's</option>-->
-<!--                        <option value="bachelor">Bachelors</option>-->
-<!--                        <option value="diploma">Diploma</option>-->
-<!--                    </select>-->
                     <span class="title_button">
    	<i class="drop_down"></i>
  </span>
                 </div>
 
                 <div class="forms">
-<!--                    <div class="list list-3">-->
-<!--                        <input type="text" name="education_type" class="education_type" id="education_type" placeholder="Education Speciality" required>-->
-<!--                    </div>-->
                     <div class="list list-4">
-<!--                        <select name="diplomas">-->
-<!--                            <option value="application_type">Application Type</option>-->
-<!--                            <option value="part_time">Part Time</option>-->
-<!--                            <option value="full_time">Full Time</option>-->
-
-<!--                        </select>-->
                         <span class="title_button">
    	<i class="drop_down"></i>
  </span>
@@ -78,7 +60,7 @@
                         <input type="text" name="zip" class="zip" id="zip" placeholder="Zip Code" th:field="*{postalCode}" required>
                     </div>
                     <div class="list list-2">
-                        <select name="province" th:field="*{province}">
+                        <select name="province" class="province" th:field="*{province}">
                             <option value="province">Province</option>
                             <option value="ontario">Ontario</option>
                             <option value="nova_scotia">Nova Scotia</option>
@@ -92,28 +74,17 @@
                     </div>
                 </div>
                 <div class="list">
-<!--                    <select name="country">-->
-<!--                        <option value="country">Country</option>-->
-<!--                        <option value="canada">Canada</option>-->
-<!--                        <option value="india">India</option>-->
-<!--                        <option value="china">China</option>-->
-<!--                        <option value="usa">USA</option>-->
-<!--                        <option value="other">Other</option>-->
-<!--                    </select>-->
                     <span class="title_button">
    	<i class="drop_down"></i>
  </span>
                 </div>
                 <div class="forms">
-<!--                    <div class="list list-1">-->
-<!--                        <input type="text" name="dial_code" class="dial_code" id="dial_code" placeholder="Code +" required>-->
-<!--                    </div>-->
                     <div class="list list-2">
                         <input type="text" name="phone_number" class="phone_number" id="phone_number" placeholder="Phone Number" th:field="*{phoneNumber}" required>
                     </div>
                 </div>
                 <div class="list">
-                    <input type="text" name="email_id" id="email_id" class="input-text" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="Email Id" th:field="*{emailId}">
+                    <input type="text" name="email_id" id="email_id" class="email_id" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="Email Id" th:field="*{emailId}">
                 </div>
                 <div class="list">
                     <input type="password" name="password" class="password" id="password" placeholder="Create Password" th:field="*{password}" required>
@@ -124,12 +95,11 @@
                         <span class="checkmark"></span>
                     </label>
                 </div>
-                <div class="list-last">
-                    <input type="submit" name="register" class="register">
-                    <a th:href="@{/register}"> Register/SignUp Here</a>
-
-                </div>
             </div>
+            <button type="submit" class="submit_application" >
+                <a>Submit</a>
+            </button>
+
         </form>
     </div>
 </div>
