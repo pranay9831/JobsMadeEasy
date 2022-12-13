@@ -40,7 +40,8 @@ public class AvailabilityQueryGeneratorImp implements IAvailabilityQueryGenerato
 
     @Override
     public String viewAllAvailability() {
-        return  "SELECT * FROM " + AVAILABILITY_TABLE +";";
+        return "SELECT u.userId, u.firstName, u.lastName, a.availableDays, a.availableHours FROM user u INNER JOIN availability a ON u.userId=a.userId;";
+//        return  "SELECT * FROM " + AVAILABILITY_TABLE +";";
 
 
 

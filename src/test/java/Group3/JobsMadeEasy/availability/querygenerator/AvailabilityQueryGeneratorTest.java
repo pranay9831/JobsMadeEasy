@@ -28,7 +28,7 @@ public class AvailabilityQueryGeneratorTest {
     public void viewAllAvailabilityTest() {
         AvailabilityQueryGeneratorImp availabilityDaoImp = AvailabilityQueryGeneratorImp.getInstance();
         String queryGenerated = availabilityDaoImp.viewAllAvailability();
-        String queryExpected = "SELECT * FROM availability;";
+        String queryExpected = "SELECT u.userId, u.firstName, u.lastName, a.availableDays, a.availableHours FROM user u INNER JOIN availability a ON u.userId=a.userId;";
         Assertions.assertEquals(queryExpected,queryGenerated,"query not match");
     }
 

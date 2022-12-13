@@ -1,6 +1,7 @@
 package Group3.JobsMadeEasy.availability.controller;
 import Group3.JobsMadeEasy.availability.dao.IAvailabilityDao;
 import Group3.JobsMadeEasy.availability.model.Availability;
+import Group3.JobsMadeEasy.availability.model.AvailabilityUserName;
 import Group3.JobsMadeEasy.util.JobsMadeEasyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +19,14 @@ public class AvailabilityController {
 
     private final Availability availability;
 
+
+    private final AvailabilityUserName availabilityUserName;
+
     public AvailabilityController(IAvailabilityDao availabilityDao) {
         this.availability = new Availability(availabilityDao);
+        this.availabilityUserName=new AvailabilityUserName(availabilityDao);
     }
+
 
     /**
      * @return It will return the availability home page.
@@ -32,7 +38,7 @@ public class AvailabilityController {
     }
 
     /**
-     * @param model : 
+     * @param model :
      * @return It will return the availability home page.
      */
     @GetMapping("/add_availability_form")
@@ -50,7 +56,7 @@ public class AvailabilityController {
     }
 
     @GetMapping("/get_all_availability")
-    public List<Availability> getAllAvailability() throws JobsMadeEasyException, SQLException {
+    public List<AvailabilityUserName> getAllAvailability() throws JobsMadeEasyException, SQLException {
         return this.availability.getAllAvailability();
 
     }
@@ -71,9 +77,10 @@ public class AvailabilityController {
 
     @GetMapping("/view_all_availability")
     public String viewAllAvailability(Model model) throws SQLException, JobsMadeEasyException {
-        List<Availability> availabilities = null;
+        List<AvailabilityUserName> availabilities = null;
         try {
             availabilities = getAllAvailability();
+            System.out.println(availabilities);
         } catch (JobsMadeEasyException e) {
             throw new RuntimeException(e);
         } catch (SQLException e) {

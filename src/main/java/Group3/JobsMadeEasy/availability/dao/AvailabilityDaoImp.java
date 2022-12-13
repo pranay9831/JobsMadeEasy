@@ -1,6 +1,7 @@
 package Group3.JobsMadeEasy.availability.dao;
 
 import Group3.JobsMadeEasy.availability.model.Availability;
+import Group3.JobsMadeEasy.availability.model.AvailabilityUserName;
 import Group3.JobsMadeEasy.availability.querygenerator.IAvailabilityQueryGenerator;
 import Group3.JobsMadeEasy.database.repository.DatabaseSetup;
 import Group3.JobsMadeEasy.util.GenerateIdUtil;
@@ -54,14 +55,27 @@ public class AvailabilityDaoImp implements IAvailabilityDao{
     }
 
     @Override
-    public List<Availability> viewAllAvailability() throws JobsMadeEasyException, SQLException {
+    public List<AvailabilityUserName> viewAllAvailability() throws JobsMadeEasyException, SQLException {
 
         ResultSet rs = null;
         try {
             String viewAllAvailabilityQuery = availabilityQueryGenerator.viewAllAvailability();
             rs = statement.executeQuery(viewAllAvailabilityQuery);
-            List<Availability> availabilities = new LinkedList<>();
-            return getAvailabilities(availabilities, rs);
+            List<AvailabilityUserName> availabilities = new LinkedList<>();
+            while(rs.next()){
+                int userId = rs.getInt("userId");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                int availableDays = rs.getInt("availableDays");
+                String availableHours = rs.getString("availableHours");
+//                int userId = rs.getInt("userId");
+
+                AvailabilityUserName availability = new AvailabilityUserName(userId, firstName,lastName,availableDays,availableHours);
+                //System.out.println(availability);
+                availabilities.add(availability);
+            }
+            System.out.println(availabilities);
+            return availabilities;
         } catch (SQLException e) {
             throw new JobsMadeEasyException(e.getMessage());
         }finally {

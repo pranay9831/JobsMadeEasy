@@ -80,7 +80,7 @@ public class Availability {
 
     }
 
-    public List<Availability> getAllAvailability() throws JobsMadeEasyException, SQLException {
+    public List<AvailabilityUserName> getAllAvailability() throws JobsMadeEasyException, SQLException {
         return this.availabilityDao.viewAllAvailability();
 
 
