@@ -1,11 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"><head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style> table, th, tr,td {
+        border: 2px solid black;}</style>
 </head>
 <body>
-<h1>View All Application Here</h1>
+<h1>View All Jobs Here</h1>
+<table border="2px solid black" style="float:left">
+    <tr>
+        <th>Application Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Expected Salary</th>
+        <th>Current Employment Status</th>
+        <th>Pass-out Year</th>
+        <th>Application Type</th>
+        <th>Study Field</th>
+        <th>Degree Type</th>
+        <th>University</th>
+        <th>Expertise One</th>
+        <th>Expertise Two</th>
+        <th>Expertise Three</th>
+    </tr>
+    <tr th:each="jobApplication:${jobApplication}">
+        <th><h4 th:text="${jobApplication.applicationId}"></h4></th>
+        <td><h4 th:text="${jobApplication.firstName}"></h4></td>
+        <td><h4 th:text="${jobApplication.lastName}"></h4></td>
+        <td><h4 th:text="${jobApplication.expectedSalary}"></h4></td>
+        <td><h4 th:text="${jobApplication.currentEmployeeStatus}"></h4></td>
+        <td><h4 th:text="${jobApplication.yearPassOut}"></h4></td>
+        <td><h4 th:text="${jobApplication.applicationType}"></h4></td>
+        <td><h4 th:text="${jobApplication.studyField}"></h4></td>
+        <td><h4 th:text="${jobApplication.degreeType}"></h4></td>
+        <td><h4 th:text="${jobApplication.university}"></h4></td>
+        <td><h4 th:text="${jobApplication.expertOne}"></h4></td>
+        <td><h4 th:text="${jobApplication.expertTwo}"></h4></td>
+        <td><h4 th:text="${jobApplication.expertThree}"></h4></td>
+<!--        <td>-->
+<!--        <form th:action="@{/update_job_post/{id}(id=${jobPosts.jobPostId})}" method="get">&ndash;&gt;&ndash;&gt;-->
+<!--        <button type="submit" class="button" delete" th:attr="data-post-id=${jobPosts.jobPostId}">Update Job</button>&ndash;&gt;&ndash;&gt;-->
+<!--        </form>-->
 
+<!--        </td>-->
+    </tr>
+</table>
 </body>
 </html>

@@ -1,7 +1,17 @@
 package Group3.JobsMadeEasy.jobpost.model;
 
+import Group3.JobsMadeEasy.jobpost.dao.IJobPostDao;
+import Group3.JobsMadeEasy.util.JobsMadeEasyException;
+import org.springframework.stereotype.Component;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
+
+@Component
 public class JobPost
 {
+    private IJobPostDao jobPostDao;
     private int jobPostId;
     private String jobTitle;
     private String salary;
@@ -25,6 +35,10 @@ public class JobPost
         this.jobDescription = jobDescription;
         this.jobLocation = jobLocation;
         this.languageRequirements = languageRequirements;
+    }
+
+    public JobPost(IJobPostDao jobPostDao){
+        this.jobPostDao = jobPostDao;
     }
 
     public int getJobPostId()
@@ -107,5 +121,37 @@ public class JobPost
                 ", jobLocation='" + jobLocation + '\'' +
                 ", languageRequirements='" + languageRequirements + '\'' +
                 '}';
+    }
+
+    public String createJobPost(JobPost jobPost) throws JobsMadeEasyException
+    {
+        if (jobPost == null) {
+            throw new JobsMadeEasyException("Failed to add job post!!");
+        }
+        return this.jobPostDao.createJobPost(jobPost);
+
+    }
+
+    public List<JobPost> getAllJobPost() throws JobsMadeEasyException, SQLException
+    {
+        return this.jobPostDao.getAllJobPost();
+    }
+
+    public Optional<JobPost> getJobPostById(int id) throws JobsMadeEasyException, SQLException {
+        if(id==0)
+        {
+            throw new JobsMadeEasyException("No job post found with given ID!!");
+        }
+        return this.jobPostDao.getJobPostById(id);
+    }
+
+    public boolean deleteJobPostById(int id) throws JobsMadeEasyException, SQLException
+    {
+
+        if (this.getJobPostById(id).isPresent())
+        {
+            return this.jobPostDao.deleteJobPostById(id);
+        }
+        return false;
     }
 }

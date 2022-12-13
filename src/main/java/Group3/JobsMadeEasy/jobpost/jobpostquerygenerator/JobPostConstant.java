@@ -1,6 +1,6 @@
-package Group3.JobsMadeEasy.jobpost.repository;
+package Group3.JobsMadeEasy.jobpost.jobpostquerygenerator;
 
-public class JobPostDaoConstant
+public class JobPostConstant
 {
     public static final String JOB_POST =
             "jobPost";
