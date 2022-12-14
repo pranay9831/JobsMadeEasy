@@ -1,7 +1,6 @@
 package Group3.JobsMadeEasy.jobpost.jobpostquerygenerator;
 
-public class JobPostConstant
-{
+public class JobPostConstant {
     public static final String JOB_POST =
             "jobPost";
     public static final String JOB_POST_ID =
