@@ -4,26 +4,48 @@
     <meta charset="UTF-8">
     <link rel="stylesheet">
     <title>Title</title></head>
+<style>
+    h1 {
+        background-color: cadetblue;
+    }
+
+    .Home-div {
+        text-align: center;
+    }
+
+    .each-btn {
+        margin: 10px;
+
+    }
+
+    .each-btn {
+        text-color: red;
+    }
+</style>
+
 <body>
 <div>
 
-
+<div  class="Home-div">
     <h1> Welcome <span th:text="${session.currentName}" /> </h1>
-<!--    <span th:text="${session.currentId}" />-->
-<!--    <span th:text="${session.currentName}" />-->
 
+    <form class="each-btn" action="/add_availability_form">
+        <input type="submit" value="Add Availability" style="
+    padding-top: 10px; text-align: center;
+    padding-bottom: 10px;">
+    </form>
 
-    <div class="list-last">
-        <a href="/add_availability_form">Add Availability</a>
-    </div>
-<!--    <div class="list-last">-->
-<!--        <a href="/view_all_availability">View All Availability</a>-->
-    </div>
-    <div class="list-last">
-        <a th:href="@{/view_my_availability/{path}(path=${session.currentId})}">View Availability</a>
-    </div>
-    <div class="list-last">
-            <a th:href="@{/delete_availability_by_id/{path}(path=${session.currentId})}">Delete Availability</a>
-    </div>
+    <form class="each-btn" th:action="@{/view_my_availability/{path}(path=${session.currentId})}">
+        <input type="submit" value="View Availability" style="
+    padding-top: 10px;text-align: center;
+    padding-bottom: 10px;">
+    </form>
+
+    <form class="each-btn" th:action="@{/delete_availability_by_id/{path}(path=${session.currentId})}">
+        <input type="submit" value="Delete Availability" style="
+    padding-top: 10px; text-align: center;
+    padding-bottom: 10px;">
+    </form>
+</div>
 </div>
 </body>
