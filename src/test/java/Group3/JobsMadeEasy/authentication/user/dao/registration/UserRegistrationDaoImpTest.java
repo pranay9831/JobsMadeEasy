@@ -1,9 +1,6 @@
 package Group3.JobsMadeEasy.authentication.user.dao.registration;
 
 import Group3.JobsMadeEasy.authentication.user.model.User;
-import Group3.JobsMadeEasy.util.JobsMadeEasyException;
-
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -26,7 +23,7 @@ public class UserRegistrationDaoImpTest implements IUserRegistrationDao{
     }
 
     @Override
-    public String createUser(User user) throws JobsMadeEasyException {
+    public String createUser(User user){
         this.mockDB.add(user);
         ListIterator<User> iterator = mockDB.listIterator();
         while (iterator.hasNext()){
@@ -39,11 +36,11 @@ public class UserRegistrationDaoImpTest implements IUserRegistrationDao{
     }
 
     @Override
-    public Optional<User> getUserById(int id) throws SQLException, JobsMadeEasyException {
+    public Optional<User> getUserById(int id) {
         ListIterator<User> iterator = mockDB.listIterator();
         while (iterator.hasNext()){
             User currentRole = iterator.next();
-            if(currentRole.getUserId() == currentRole.getUserId()){
+            if(currentRole.getUserId() == id){
                 return Optional.of(currentRole);
             }
         }
@@ -60,7 +57,7 @@ public class UserRegistrationDaoImpTest implements IUserRegistrationDao{
         ListIterator<User> iterator = mockDB.listIterator();
         while (iterator.hasNext()){
             User currentRole = iterator.next();
-            if(currentRole.getUserId() == currentRole.getUserId()){
+            if(currentRole.getUserId() == id){
                 return true;
             }
         }

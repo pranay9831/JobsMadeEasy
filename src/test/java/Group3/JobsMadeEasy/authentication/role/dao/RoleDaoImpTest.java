@@ -34,7 +34,7 @@ public class RoleDaoImpTest implements IRoleDao{
         ListIterator<Role> iterator = mockDB.listIterator();
         while (iterator.hasNext()){
             Role currentRole = iterator.next();
-            if(currentRole.getRoleId() == currentRole.getRoleId()){
+            if(currentRole.getRoleId() == id){
                 return Optional.of(currentRole);
             }
         }
@@ -51,7 +51,7 @@ public class RoleDaoImpTest implements IRoleDao{
         ListIterator<Role> iterator = mockDB.listIterator();
         while (iterator.hasNext()){
             Role currentRole = iterator.next();
-            if(currentRole.getRoleId() == currentRole.getRoleId()){
+            if(currentRole.getRoleId() == id){
                 return true;
             }
         }

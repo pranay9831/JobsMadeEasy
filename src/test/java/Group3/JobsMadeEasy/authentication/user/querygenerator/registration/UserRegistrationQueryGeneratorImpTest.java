@@ -4,7 +4,7 @@ import Group3.JobsMadeEasy.authentication.user.model.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class UserRegistrationDaoImpTest {
+public class UserRegistrationQueryGeneratorImpTest {
 
     @Test
     public void createUserTest() {
