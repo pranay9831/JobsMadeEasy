@@ -4,7 +4,6 @@ import Group3.JobsMadeEasy.feedback.model.Feedback;
 import org.springframework.stereotype.Component;
 
 import static Group3.JobsMadeEasy.feedback.querygenerator.FeedbackConstant.*;
-import static Group3.JobsMadeEasy.jobapplication.querygenerator.JobApplicationConstant.JOB_APPLICATION_TABLE;
 
 @Component
 public class FeedbackQueryGenerator implements IFeedbackQueryGenerator {
