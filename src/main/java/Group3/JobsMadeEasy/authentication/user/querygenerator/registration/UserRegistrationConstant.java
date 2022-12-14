@@ -1,5 +1,8 @@
 package Group3.JobsMadeEasy.authentication.user.querygenerator.registration;
 
+/**
+ * @description: this are query generator constant
+ */
 public class UserRegistrationConstant {
 
     public static final String USER_TABLE =

@@ -1,5 +1,8 @@
 package Group3.JobsMadeEasy.authentication.user.controller.registration;
 
+/**
+ * @description: this are ui pages constant
+ */
 public class UserRegistrationControllerConstant {
     public static final String INDEX = "index";
     public static final String REGISTER = "register";

@@ -1,5 +1,8 @@
 package Group3.JobsMadeEasy.authentication.role.querygenerator;
 
+/**
+ * @description: this are query generator constant
+ */
 public class RoleConstant {
 
     public static final String ROLE_TABLE =

@@ -1,5 +1,8 @@
 package Group3.JobsMadeEasy.authentication.role.controller;
 
+/**
+ * @description: this are ui pages constant
+ */
 public class RoleControllerConstant {
 
     public static final String VIEW_ALL_ROLES =

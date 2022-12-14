@@ -9,6 +9,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * @description: it will set up database connection for all apis
+ */
 @Configuration
 public class DatabaseSetup extends DatabaseConstant implements IDatabaseSetup {
 
@@ -26,6 +29,11 @@ public class DatabaseSetup extends DatabaseConstant implements IDatabaseSetup {
         return databaseSetup;
     }
 
+    /**
+     *
+     * @return configuration from file
+     * @throws IOException
+     */
     public static Properties getProperties() throws IOException {
         Properties configuration = new Properties();
         InputStream inputStream = DatabaseSetup.class
@@ -36,6 +44,13 @@ public class DatabaseSetup extends DatabaseConstant implements IDatabaseSetup {
         return configuration;
     }
 
+    /**
+     *
+     * @return connection object
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws IOException
+     */
     @Override
     public Connection getConnectionObject() throws ClassNotFoundException, SQLException, IOException {
         Properties properties = DatabaseSetup.getConnectionInstance().getProperties();
@@ -46,6 +61,9 @@ public class DatabaseSetup extends DatabaseConstant implements IDatabaseSetup {
         return DriverManager.getConnection(url, userName, userPassword);
     }
 
+    /**
+     * @description: it will close all connections at the end of api call
+     */
     @Override
     public void closeDatabaseConnection() {
         try {
