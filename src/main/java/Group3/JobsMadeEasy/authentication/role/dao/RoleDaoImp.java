@@ -1,7 +1,6 @@
 package Group3.JobsMadeEasy.authentication.role.dao;
 
 import Group3.JobsMadeEasy.authentication.role.model.Role;
-import Group3.JobsMadeEasy.authentication.role.model.RoleMapper;
 import Group3.JobsMadeEasy.authentication.role.querygenerator.IRoleQueryGenerator;
 import Group3.JobsMadeEasy.database.repository.DatabaseSetup;
 import Group3.JobsMadeEasy.util.JobsMadeEasyException;
@@ -59,7 +58,10 @@ public class RoleDaoImp implements IRoleDao {
             String getRoleByIdQuery = roleQueryGenerator.getRole(id);
             rs = statement.executeQuery(getRoleByIdQuery);
             if (rs.next()) {
-                return Optional.ofNullable(new RoleMapper().mapRow(rs, rs.getRow()));
+                return Optional.of(new Role(
+                        rs.getInt("roleId"),
+                        rs.getString("roleName")
+                ));
             }
         } catch (SQLException e) {
             throw new JobsMadeEasyException(e.getMessage());

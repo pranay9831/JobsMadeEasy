@@ -8,6 +8,16 @@
     <title>Create Job post Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
+<style>
+    h1 {
+        background-color: cadetblue;
+    }
+
+    .list {
+        margin-top: 20px;
+
+    }
+</style>
 <body class="registration_form" data-new-gr-c-s-check-loaded="14.1087.0" data-gr-ext-installed="">
 <div class="new_user_form">
     <div class="content">
@@ -15,33 +25,39 @@
         <form method="post" id="form" th:action="@{/add_job_post}" th:object="${jobPost}">
 
             <div class="contact_details">
-                <h2>Job Details</h2>
+                <h1 style="
+                    margin-top: 0px;
+                     padding-top: 15px;
+                     padding-bottom: 15px;">Enter job details to create Post</h1>
                 <div class="list">
                     <label>Job Title: </label><br>
-                    <input type="text" id="jobTitle" placeholder="Job Title"  th:field="*{jobTitle}">
+                    <input type="text" id="jobTitle" placeholder="Job Title" th:field="*{jobTitle}">
                 </div>
                 <div class="list">
-                   <label>Salary: </label><br>
-                    <input type="text" id="salary" placeholder="Salary"  th:field="*{salary}">
+                    <label>Salary: </label><br>
+                    <input type="text" id="salary" placeholder="Salary" th:field="*{salary}">
                 </div>
                 <div class="list">
                     <label>Type of Job: </label><br>
-                    <input type="text" id="jobType"placeholder="Job Type"  th:field="*{jobType}">
+                    <input type="text" id="jobType" placeholder="Job Type" th:field="*{jobType}">
                 </div>
-                <div class="list" >
+                <div class="list">
                     <label>Job Description: </label><br>
-                    <input id="jobDescription" type="text"  style="height: 10rem; width: 30rem;" placeholder="Job Decription" th:field="*{jobDescription}">
+                    <input id="jobDescription" type="text" style="height: 10rem; width: 30rem;"
+                           placeholder="Job Decription" th:field="*{jobDescription}">
                 </div>
                 <div class="list">
                     <label>Job Location: </label><br>
-                    <input type="text" name="jobLocation" id="jobLocation" placeholder="Job Location"  th:field="*{jobLocation}">
+                    <input type="text" name="jobLocation" id="jobLocation" placeholder="Job Location"
+                           th:field="*{jobLocation}">
                 </div>
                 <div class="list">
                     <label>Language Required: </label><br>
-                    <input type="text" name="language" id="language" placeholder="Language Requirements" th:field="*{languageRequirements}">
+                    <input type="text" name="language" id="language" placeholder="Language Requirements"
+                           th:field="*{languageRequirements}">
                 </div>
-                <div class="list-last">
-                    <button type="submit" class="button" onclick="clickFunction()" >CREATE JOB POST</button>
+                <div class="list">
+                    <button type="submit" class="button">CREATE JOB POST</button>
                 </div>
             </div>
         </form>
@@ -49,14 +65,14 @@
 </div>
 <script>
 
-    const form= document.getElementById('form')
-    const title= document.getElementById('jobTitle')
-    const salary= document.getElementById('salary')
-    const jobType= document.getElementById('jobType')
-    const jobDescription= document.getElementById('jobDescription')
-    const jobLocation= document.getElementById('jobLocation')
-    const language= document.getElementById('language')
-    const errorMessage= document.getElementById('errorMessage')
+    const form = document.getElementById('form')
+    const title = document.getElementById('jobTitle')
+    const salary = document.getElementById('salary')
+    const jobType = document.getElementById('jobType')
+    const jobDescription = document.getElementById('jobDescription')
+    const jobLocation = document.getElementById('jobLocation')
+    const language = document.getElementById('language')
+    const errorMessage = document.getElementById('errorMessage')
 
     form.addEventListener('submit', (e) => {
         let messages = []
@@ -72,7 +88,7 @@
         if (jobDescription.value === '' || jobDescription.value == null) {
             messages.push('Job description can not be empty!!')
         }
-        if (jobDescription.value <20) {
+        if (jobDescription.value < 20) {
             messages.push('Job description should be in detail!!')
         }
         if (jobLocation.value === '' || jobLocation.value == null) {
@@ -85,8 +101,7 @@
         if (messages.length > 0) {
             e.preventDefault()
             errorMessage.innerText = messages.join(' \n')
-        }
-        else {
+        } else {
             alert("Job post created successfully.!!")
         }
     })
