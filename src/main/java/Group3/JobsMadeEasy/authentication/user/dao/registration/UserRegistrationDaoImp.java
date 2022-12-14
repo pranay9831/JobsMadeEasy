@@ -2,11 +2,9 @@ package Group3.JobsMadeEasy.authentication.user.dao.registration;
 
 import Group3.JobsMadeEasy.authentication.user.model.User;
 import Group3.JobsMadeEasy.authentication.user.querygenerator.registration.IUserRegistrationQueryGenerator;
-import Group3.JobsMadeEasy.database.repository.DatabaseSetup;
-import Group3.JobsMadeEasy.util.GenerateIdUtil;
+import Group3.JobsMadeEasy.database.dao.DatabaseSetup;
 import Group3.JobsMadeEasy.util.JobsMadeEasyException;
 import org.springframework.stereotype.Component;
-
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
@@ -16,7 +14,12 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import static Group3.JobsMadeEasy.authentication.user.controller.registration.UserRegistrationControllerConstant.INDEX;
+import static Group3.JobsMadeEasy.authentication.user.controller.registration.UserRegistrationControllerConstant.REGISTER;
 
+/**
+ * @description: It will handle all the database layer queries for the user .
+ */
 @Component
 public class UserRegistrationDaoImp implements IUserRegistrationDao {
     private final IUserRegistrationQueryGenerator userRegistrationQueryGenerator;
@@ -25,7 +28,9 @@ public class UserRegistrationDaoImp implements IUserRegistrationDao {
     private final Statement statement;
     private final HttpSession session;
 
-    public UserRegistrationDaoImp(IUserRegistrationQueryGenerator userRegistrationQueryGenerator, DatabaseSetup databaseSetup, HttpSession session) throws SQLException, IOException, ClassNotFoundException {
+    public UserRegistrationDaoImp(IUserRegistrationQueryGenerator userRegistrationQueryGenerator,
+                                  DatabaseSetup databaseSetup, HttpSession session) throws SQLException, IOException,
+            ClassNotFoundException {
         this.userRegistrationQueryGenerator = userRegistrationQueryGenerator;
         this.databaseSetup = databaseSetup;
         this.connection = databaseSetup.getConnectionObject();
@@ -33,13 +38,19 @@ public class UserRegistrationDaoImp implements IUserRegistrationDao {
         this.session = session;
     }
 
+    /**
+     *
+     * @param user
+     * @return redirect user after completing register
+     * @throws JobsMadeEasyException
+     */
     @Override
     public String createUser(User user) throws JobsMadeEasyException {
         try {
             String createUserQuery = userRegistrationQueryGenerator.createUser(user);
             int updatedRows = statement.executeUpdate(createUserQuery, Statement.RETURN_GENERATED_KEYS);
             if (updatedRows > 0) {
-                return "index";
+                return INDEX;
             }
         } catch (
                 SQLException e) {
@@ -47,16 +58,23 @@ public class UserRegistrationDaoImp implements IUserRegistrationDao {
         } finally {
             databaseSetup.closeDatabaseConnection();
         }
-        return "register";
+        return REGISTER;
     }
 
+    /**
+     *
+     * @param id
+     * @return return user of same id
+     * @throws JobsMadeEasyException
+     * @throws SQLException
+     */
     @Override
     public Optional<User> getUserById(int id) throws SQLException, JobsMadeEasyException {
         ResultSet rs = null;
         try {
             String getUserByIdQuery = userRegistrationQueryGenerator.getUserById(id);
             rs = statement.executeQuery(getUserByIdQuery);
-            if(rs.next()){
+            if (rs.next()) {
                 return Optional.of(new User(
                         rs.getInt("userId"),
                         rs.getString("firstName"),
@@ -75,13 +93,19 @@ public class UserRegistrationDaoImp implements IUserRegistrationDao {
             }
         } catch (SQLException e) {
             throw new JobsMadeEasyException(e.getMessage());
-        }finally {
+        } finally {
             databaseSetup.closeDatabaseConnection();
             rs.close();
         }
         return null;
     }
 
+    /**
+     *
+     * @return list of users
+     * @throws JobsMadeEasyException
+     * @throws SQLException
+     */
     @Override
     public List<User> getUsers() throws JobsMadeEasyException, SQLException {
         ResultSet rs = null;
@@ -89,7 +113,7 @@ public class UserRegistrationDaoImp implements IUserRegistrationDao {
             String getUsersQuery = userRegistrationQueryGenerator.getUsers();
             rs = statement.executeQuery(getUsersQuery);
             List<User> users = new LinkedList<>();
-            while(rs.next()){
+            while (rs.next()) {
                 int i = rs.getInt("userId");
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
@@ -103,19 +127,26 @@ public class UserRegistrationDaoImp implements IUserRegistrationDao {
                 int roleId = rs.getInt("roleId");
                 boolean isEmployee = rs.getBoolean("isEmployee");
                 boolean isApproved = rs.getBoolean("isApproved");
-                User user = new User(i,firstName,lastName,phoneNumber,emailId,password,city,province,address,postalCode,
-                        roleId,isEmployee,isApproved);
+                User user = new User(i, firstName, lastName, phoneNumber, emailId, password, city, province, address,
+                        postalCode, roleId, isEmployee, isApproved);
                 users.add(user);
             }
             return users;
         } catch (SQLException e) {
             throw new JobsMadeEasyException(e.getMessage());
-        }finally {
+        } finally {
             databaseSetup.closeDatabaseConnection();
             rs.close();
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return true or false according to delete operation success or failure
+     * @throws JobsMadeEasyException
+     * @throws SQLException
+     */
     @Override
     public boolean deleteUserById(int id) throws JobsMadeEasyException {
         try {
@@ -124,7 +155,7 @@ public class UserRegistrationDaoImp implements IUserRegistrationDao {
             return true;
         } catch (SQLException e) {
             throw new JobsMadeEasyException(e.getMessage());
-        }finally {
+        } finally {
             databaseSetup.closeDatabaseConnection();
         }
     }

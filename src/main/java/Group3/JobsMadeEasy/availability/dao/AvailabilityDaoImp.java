@@ -3,7 +3,7 @@ package Group3.JobsMadeEasy.availability.dao;
 import Group3.JobsMadeEasy.availability.model.Availability;
 import Group3.JobsMadeEasy.availability.model.AvailabilityUserName;
 import Group3.JobsMadeEasy.availability.querygenerator.IAvailabilityQueryGenerator;
-import Group3.JobsMadeEasy.database.repository.DatabaseSetup;
+import Group3.JobsMadeEasy.database.dao.DatabaseSetup;
 import Group3.JobsMadeEasy.util.GenerateIdUtil;
 import Group3.JobsMadeEasy.util.JobsMadeEasyException;
 import org.springframework.stereotype.Component;

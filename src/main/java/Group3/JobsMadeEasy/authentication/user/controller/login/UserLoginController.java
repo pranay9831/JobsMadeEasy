@@ -10,6 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.sql.SQLException;
 
+import static Group3.JobsMadeEasy.authentication.user.controller.login.UserLoginControllerConstant.LOGIN;
+
+/**
+ * @description: It will handle all the login related request.
+ */
 @Controller
 public class UserLoginController {
 
@@ -19,18 +24,34 @@ public class UserLoginController {
         this.user = new User(userLoginDao,userRegistrationDao);
     }
 
+    /**
+     *
+     * @param model
+     * @return return login page
+     */
     @GetMapping("/login")
     public String showLoginForm(Model model) {
         Login login = new Login();
         model.addAttribute("login",login);
-        return "login";
+        return LOGIN;
     }
 
+    /**
+     *
+     * @param login
+     * @return it will check user's email and password for authentication and redirect on different page
+     * @throws SQLException
+     * @throws JobsMadeEasyException
+     */
     @PostMapping("/auth/login")
-    public String loginApplicant(@ModelAttribute Login login) throws SQLException, JobsMadeEasyException {
+    public String loginUser(@ModelAttribute Login login) throws SQLException, JobsMadeEasyException {
         return user.checkLoginDetails(login);
     }
 
+    /**
+     *
+     * @return it will perform logout and clean all the session values
+     */
     @GetMapping("/logout")
     public String logout(){
         return user.logout();

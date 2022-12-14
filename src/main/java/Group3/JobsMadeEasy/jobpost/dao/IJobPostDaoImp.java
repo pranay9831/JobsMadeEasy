@@ -1,6 +1,6 @@
 package Group3.JobsMadeEasy.jobpost.dao;
 
-import Group3.JobsMadeEasy.database.repository.DatabaseSetup;
+import Group3.JobsMadeEasy.database.dao.DatabaseSetup;
 import Group3.JobsMadeEasy.jobpost.jobpostquerygenerator.IJobPostQueryGenerator;
 import Group3.JobsMadeEasy.jobpost.model.IJobPostFactory;
 import Group3.JobsMadeEasy.jobpost.model.JobPost;

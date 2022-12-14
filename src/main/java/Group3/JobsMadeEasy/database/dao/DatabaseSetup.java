@@ -1,4 +1,4 @@
-package Group3.JobsMadeEasy.database.repository;
+package Group3.JobsMadeEasy.database.dao;
 
 import Group3.JobsMadeEasy.database.DatabaseConstant;
 import org.springframework.context.annotation.Configuration;

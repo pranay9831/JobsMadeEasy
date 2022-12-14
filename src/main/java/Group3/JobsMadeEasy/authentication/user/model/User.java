@@ -10,6 +10,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+import static Group3.JobsMadeEasy.authentication.user.controller.login.UserLoginControllerConstant.LOGIN_WARNING;
+
+/**
+ * @description: It will handle all the properties of user and business logic for it.
+ */
 @Component
 public class User {
 
@@ -163,18 +168,37 @@ public class User {
         isApproved = approved;
     }
 
+    /**
+     *
+     * @param login
+     * @return it will check user's email and password for authentication and redirect on different page
+     * @throws SQLException
+     * @throws JobsMadeEasyException
+     */
     public String checkLoginDetails(Login login) throws SQLException, JobsMadeEasyException {
-        String role = this.userLoginDao.checkLoginDetails(login);
-        if(role == null){
-            return "redirect:/login?success";
+        String user = this.userLoginDao.checkLoginDetails(login);
+        if(user == null){
+            return LOGIN_WARNING;
         }else{
-            return checkCurrentUserRole(role);
+            return checkCurrentUserRole(user);
         }
     }
+
+    /**
+     *
+     * @param roleName
+     * @return it will redirect user according to role
+     */
     public String checkCurrentUserRole(String roleName) {
         return roleName + "HomePage";
     }
 
+    /**
+     *
+     * @param user
+     * @return redirect user after completing register
+     * @throws JobsMadeEasyException
+     */
     public String createUser(User user) throws JobsMadeEasyException {
         if (user == null) {
             throw new JobsMadeEasyException("user register details not found..");
@@ -196,6 +220,13 @@ public class User {
         return this.userRegistrationDao.createUser(user);
     }
 
+    /**
+     *
+     * @param id
+     * @return return user of same id
+     * @throws JobsMadeEasyException
+     * @throws SQLException
+     */
     public Optional<User> getUserById(int id) throws JobsMadeEasyException, SQLException {
         if (id == 0) {
             throw new JobsMadeEasyException("No User found in DB");
@@ -203,10 +234,23 @@ public class User {
         return this.userRegistrationDao.getUserById(id);
     }
 
+    /**
+     *
+     * @return list of users
+     * @throws JobsMadeEasyException
+     * @throws SQLException
+     */
     public List<User> getAllUsers() throws SQLException, JobsMadeEasyException {
         return this.userRegistrationDao.getUsers();
     }
 
+    /**
+     *
+     * @param id
+     * @return true or false according to delete operation success or failure
+     * @throws JobsMadeEasyException
+     * @throws SQLException
+     */
     public boolean deleteUserById(int id) throws SQLException, JobsMadeEasyException {
         if (this.getUserById(id).isPresent())
         {
@@ -215,6 +259,10 @@ public class User {
         return false;
     }
 
+    /**
+     *
+     * @return it will perform logout and clean all the session values
+     */
     public String logout() {
         return this.userLoginDao.logout();
     }

@@ -1,6 +1,6 @@
 package Group3.JobsMadeEasy.jobapplication.dao;
 
-import Group3.JobsMadeEasy.database.repository.DatabaseSetup;
+import Group3.JobsMadeEasy.database.dao.DatabaseSetup;
 import Group3.JobsMadeEasy.jobapplication.model.JobApplication;
 import Group3.JobsMadeEasy.jobapplication.model.JobApplicationMapper;
 import Group3.JobsMadeEasy.jobapplication.querygenerator.IJobApplicationQueryGenerator;
