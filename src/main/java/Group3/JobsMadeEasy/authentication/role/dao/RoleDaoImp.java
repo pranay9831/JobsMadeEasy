@@ -2,7 +2,7 @@ package Group3.JobsMadeEasy.authentication.role.dao;
 
 import Group3.JobsMadeEasy.authentication.role.model.Role;
 import Group3.JobsMadeEasy.authentication.role.querygenerator.IRoleQueryGenerator;
-import Group3.JobsMadeEasy.database.repository.DatabaseSetup;
+import Group3.JobsMadeEasy.database.dao.DatabaseSetup;
 import Group3.JobsMadeEasy.util.JobsMadeEasyException;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +16,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @description: It will handle all the database layer queries for the role.
+ */
 @Component
 public class RoleDaoImp implements IRoleDao {
 
@@ -33,6 +36,11 @@ public class RoleDaoImp implements IRoleDao {
         this.session = session;
     }
 
+    /**
+     * @param role: role model properties
+     * @return It will return true/false if role entry has been created in db.
+     * @throws JobsMadeEasyException
+     */
     @Override
     public boolean createRole(Role role) throws JobsMadeEasyException {
         role.setRoleId(role.getRoleId());
@@ -51,6 +59,12 @@ public class RoleDaoImp implements IRoleDao {
         return true;
     }
 
+    /**
+     * @param id: int role_id
+     * @return It will return Role of the same id.
+     * @throws JobsMadeEasyException
+     * @throws SQLException
+     */
     @Override
     public Optional<Role> getRole(int id) throws JobsMadeEasyException, SQLException {
         ResultSet rs = null;
@@ -72,6 +86,11 @@ public class RoleDaoImp implements IRoleDao {
         return null;
     }
 
+    /**
+     * @return It will return list of Role.
+     * @throws JobsMadeEasyException
+     * @throws SQLException
+     */
     @Override
     public List<Role> viewAllRoles() throws JobsMadeEasyException, SQLException {
         ResultSet rs = null;
@@ -94,6 +113,13 @@ public class RoleDaoImp implements IRoleDao {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return it will return true/false if role with same id has been deleted from db.
+     * @throws JobsMadeEasyException
+     * @throws SQLException
+     */
     @Override
     public boolean deleteRoleById(int id) throws JobsMadeEasyException {
         try {

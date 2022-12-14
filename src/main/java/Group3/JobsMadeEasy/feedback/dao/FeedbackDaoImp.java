@@ -1,6 +1,6 @@
 package Group3.JobsMadeEasy.feedback.dao;
 
-import Group3.JobsMadeEasy.database.repository.DatabaseSetup;
+import Group3.JobsMadeEasy.database.dao.DatabaseSetup;
 import Group3.JobsMadeEasy.feedback.model.Feedback;
 import Group3.JobsMadeEasy.feedback.querygenerator.IFeedbackQueryGenerator;
 import Group3.JobsMadeEasy.util.GenerateIdUtil;

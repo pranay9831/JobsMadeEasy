@@ -2,6 +2,9 @@ package Group3.JobsMadeEasy.mail.model;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * @description: It will handle all the properties of mail and business logic for it.
+ */
 @Component
 public class EmailData {
 

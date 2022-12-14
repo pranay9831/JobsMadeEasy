@@ -1,4 +1,4 @@
-package Group3.JobsMadeEasy.database.repository;
+package Group3.JobsMadeEasy.database.dao;
 
 import java.io.IOException;
 import java.sql.Connection;

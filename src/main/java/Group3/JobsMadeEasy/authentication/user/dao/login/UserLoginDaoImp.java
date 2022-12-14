@@ -3,7 +3,7 @@ package Group3.JobsMadeEasy.authentication.user.dao.login;
 import Group3.JobsMadeEasy.authentication.role.querygenerator.IRoleQueryGenerator;
 import Group3.JobsMadeEasy.authentication.user.model.Login;
 import Group3.JobsMadeEasy.authentication.user.querygenerator.login.IUserLoginQueryGenerator;
-import Group3.JobsMadeEasy.database.repository.DatabaseSetup;
+import Group3.JobsMadeEasy.database.dao.DatabaseSetup;
 import Group3.JobsMadeEasy.util.JobsMadeEasyException;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +14,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * @description: It will handle all the database layer queries for the login .
+ */
 @Component
 public class UserLoginDaoImp implements IUserLoginDao{
 
@@ -33,17 +36,22 @@ public class UserLoginDaoImp implements IUserLoginDao{
         this.session = session;
     }
 
+    /**
+     *
+     * @param login
+     * @return it will check user's email and password for authentication
+     * @throws SQLException
+     * @throws JobsMadeEasyException
+     */
     @Override
     public String checkLoginDetails(Login login) throws JobsMadeEasyException, SQLException {
-        ResultSet rs = null, resultSet = null;
+        ResultSet rs = null, resultSet;
         login.setEmailId(login.getEmailId());
         login.setPassword(login.getPassword());
         try {
             String checkLoginDetailsQuery = userLoginQueryGenerator.checkLoginDetails(login);
-            System.out.println("ooooooo" + checkLoginDetailsQuery);
             rs = statement.executeQuery(checkLoginDetailsQuery);
             if(rs.next()){
-                System.out.println("ooooooo" + rs.getString("userId"));
                 session.setAttribute("currentId", rs.getString("userId"));
                 session.setAttribute("currentName", rs.getString("firstName"));
                 String getRoleByIdQuery = roleQueryGenerator.getRole(rs.getInt("roleId"));
@@ -62,6 +70,10 @@ public class UserLoginDaoImp implements IUserLoginDao{
         return null;
     }
 
+    /**
+     *
+     * @return it will perform logout and clean all the session values
+     */
     @Override
     public String logout() {
         session.removeAttribute("role");
