@@ -1,0 +1,28 @@
+package Group3.JobsMadeEasy.mail.controller;
+
+
+import Group3.JobsMadeEasy.mail.dao.IEmailDao;
+import Group3.JobsMadeEasy.mail.model.EmailData;
+import org.springframework.web.bind.annotation.*;
+
+import javax.mail.MessagingException;
+import java.io.IOException;
+
+@RestController
+public class EmailController {
+
+    private final IEmailDao emailDao;
+    private final EmailData emailData;
+
+    public EmailController(IEmailDao emailDao, EmailData emailData) {
+        this.emailDao = emailDao;
+        this.emailData = emailData;
+    }
+
+    @PostMapping(value = "/send_mail")
+    public String sendEmail(@RequestBody String mail) throws MessagingException, IOException {
+        emailData.setData("Interview schedule successfully!!");
+        emailDao.sendMail(emailData,mail);
+        return "Email sent successfully";
+    }
+}
