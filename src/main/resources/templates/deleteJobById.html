@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        #delete-table tr:nth-child(even)
-        {
+        #delete-table tr:nth-child(even) {
             background-color: #cccccc;
         }
 
-        #delete-table tr:hover
-        {
+        #delete-table tr:hover {
             background-color: #f2f2f2;
         }
 
@@ -25,7 +23,7 @@
     </style>
 </head>
 <body>
-<h1>Delete uploaded job posts.</h1>
+<h1>Delete job posts</h1>
 <table border="2px solid black" id="delete-table">
     <tr>
         <th>jobPostId</th>
@@ -37,7 +35,7 @@
         <th>languageRequirements</th>
     </tr>
     <tr th:each="jobPosts:${jobPosts}">
-        <th id="post-id" ><h4 th:text="${jobPosts.jobPostId}"></h4></th>
+        <th id="post-id"><h4 th:text="${jobPosts.jobPostId}"></h4></th>
         <td><h4 th:text="${jobPosts.jobTitle}"></h4></td>
         <td><h4 th:text="${jobPosts.jobDescription}"></h4></td>
         <td><h4 th:text="${jobPosts.jobType}"></h4></td>
@@ -45,7 +43,9 @@
         <td><h4 th:text="${jobPosts.jobLocation}"></h4></td>
         <td><h4 th:text="${jobPosts.languageRequirements}"></h4></td>
         <td>
-            <button type="submit" class="button--delete" onclick="clickFunction()" th:attr="data-post-id=${jobPosts.jobPostId}">Delete job</button>
+            <button type="submit" class="button--delete" onclick="clickFunction()"
+                    th:attr="data-post-id=${jobPosts.jobPostId}">Delete job post
+            </button>
         </td>
     </tr>
 </table>
@@ -54,21 +54,20 @@
     function clickFunction() {
         alert("Job post deleted successfully.!!");
     }
+
     const deleteButtonsList = document.querySelectorAll(".button--delete");
     console.log(deleteButtonsList);
     deleteButtonsList.forEach(deleteButton => {
         deleteButton.addEventListener("click", (e) => {
             const id = e.target.dataset.postId;
             console.log(id);
-
             fetch(`/delete_job_post_by_id/${id}`,
                 {
-                method: "delete"
-            }).then((res) => res.json()).then(data => location.reload());
+                    method: "delete"
+                }).then((res) => res.json()).then(data => location.reload());
 
         })
     })
 </script>
-
 </body>
 </html>

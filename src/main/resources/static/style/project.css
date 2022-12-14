@@ -132,13 +132,14 @@ nav_bar li a {
 	left: 9rem;
 	border-color: #010101;
 	border-style: solid;
-	height: 34rem;
+	height: 42rem;
 	width: 45rem;
 }
 .my_application,
 .view_all_jobs,
 .provide_availability,
-.delete_application{
+.delete_application,
+.logout_application{
 	font-size: 1.7rem;
 	text-align: center;
 }
@@ -319,7 +320,8 @@ li a:hover {
 .button_1,
 .button_2,
 .button_3,
-.button_4{
+.button_4,
+.button_5{
 	position: absolute;
 	border-style: solid;
 	border-color: #010101;
@@ -345,6 +347,11 @@ li a:hover {
 .button_4{
 	top: 4rem;
 	left: -1rem;
+}
+
+.button_5{
+	top: 3rem;
+	left: -2rem;
 }
 
 .avail_submit{
@@ -518,4 +525,9 @@ li a:hover {
 	left: -11rem;
 	width: 19rem;
 	height: 3rem;
+}
+.logout_application{
+	position: absolute;
+	top: 34rem;
+	left: 18rem;
 }

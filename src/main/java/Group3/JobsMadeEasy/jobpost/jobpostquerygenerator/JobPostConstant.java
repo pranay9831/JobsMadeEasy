@@ -1,5 +1,8 @@
 package Group3.JobsMadeEasy.jobpost.jobpostquerygenerator;
 
+/**
+ * These are constants for Queries.
+ */
 public class JobPostConstant {
     public static final String JOB_POST =
             "jobPost";

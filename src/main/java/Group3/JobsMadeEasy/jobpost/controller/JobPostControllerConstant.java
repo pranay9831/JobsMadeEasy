@@ -1,5 +1,8 @@
 package Group3.JobsMadeEasy.jobpost.controller;
 
+/**
+ * These are constants for UI pages.
+ */
 public class JobPostControllerConstant {
     public static final String HR_HOME_PAGE =
             "hrHomePage";
