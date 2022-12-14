@@ -2,6 +2,7 @@ package Group3.JobsMadeEasy.jobapplication.dao;
 
 import Group3.JobsMadeEasy.database.repository.DatabaseSetup;
 import Group3.JobsMadeEasy.jobapplication.model.JobApplication;
+import Group3.JobsMadeEasy.jobapplication.model.JobApplicationMapper;
 import Group3.JobsMadeEasy.jobapplication.querygenerator.IJobApplicationQueryGenerator;
 import Group3.JobsMadeEasy.util.GenerateIdUtil;
 import Group3.JobsMadeEasy.util.JobsMadeEasyException;
@@ -75,22 +76,7 @@ public class JobApplicationDaoImp implements IJobApplicationDao {
                 String getJobApplicationByIdQuery = jobApplicationQueryGenerator.getJobApplicationById(id);
                 rs = statement.executeQuery(getJobApplicationByIdQuery);
                 if (rs.next()) {
-                    return Optional.of(new JobApplication(
-                            rs.getInt("applicationId"),
-                            rs.getString("firstName"),
-                            rs.getString("lastName"),
-                            rs.getInt("expectedSalary"),
-                            rs.getString("currentEmployeeStatus"),
-                            rs.getInt("yearPassOut"),
-                            rs.getString("applicationType"),
-                            rs.getString("studyField"),
-                            rs.getString("degreeType"),
-                            rs.getString("university"),
-                            rs.getString("expertOne"),
-                            rs.getString("expertTwo"),
-                            rs.getString("expertThree"),
-                            rs.getInt("jobPostId")
-                    ));
+                    return Optional.ofNullable(new JobApplicationMapper().mapRow(rs, rs.getRow()));
                 }
             } catch (SQLException e) {
                 throw new JobsMadeEasyException(e.getMessage());

@@ -3,13 +3,13 @@ package Group3.JobsMadeEasy.feedback.controller;
 
 import Group3.JobsMadeEasy.feedback.dao.IFeedbackDao;
 import Group3.JobsMadeEasy.feedback.model.Feedback;
-import Group3.JobsMadeEasy.jobapplication.model.JobApplication;
 import Group3.JobsMadeEasy.util.JobsMadeEasyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import java.sql.SQLException;
 import java.util.List;
 

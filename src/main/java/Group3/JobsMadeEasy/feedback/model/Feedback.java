@@ -2,8 +2,6 @@ package Group3.JobsMadeEasy.feedback.model;
 
 
 import Group3.JobsMadeEasy.feedback.dao.IFeedbackDao;
-import Group3.JobsMadeEasy.jobapplication.dao.IJobApplicationDao;
-import Group3.JobsMadeEasy.jobapplication.model.JobApplication;
 import Group3.JobsMadeEasy.util.JobsMadeEasyException;
 import org.springframework.stereotype.Component;
 
