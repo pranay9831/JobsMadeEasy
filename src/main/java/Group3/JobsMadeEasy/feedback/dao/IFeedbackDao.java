@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface IFeedbackDao {
     String createFeedback(Feedback feedback) throws JobsMadeEasyException, SQLException;
-    List<Feedback> getFeedback() throws JobsMadeEasyException, SQLException;
 
+    List<Feedback> getFeedback() throws JobsMadeEasyException, SQLException;
 
 
 }
