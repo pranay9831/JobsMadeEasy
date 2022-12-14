@@ -25,13 +25,13 @@ public class EmailDaoImpTest {
         EmailData emailData = new EmailData();
         emailData.setData("test");
         String email = "test@gmail.com";
-        emailDao.sendMail(emailData,email);
+        emailDao.sendMail(emailData, email);
         assertEquals(emailData.getData(), "test");
-        assertEquals(email,"test@gmail.com");
+        assertEquals(email, "test@gmail.com");
     }
 
     @Test
-    public void setupPropertiesTest(){
+    public void setupPropertiesTest() {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         emailDao.setupProperties(properties);
@@ -40,11 +40,11 @@ public class EmailDaoImpTest {
     }
 
     @Test
-    public void getSession(){
-       String email = "test@gmail.com";
-       String password = "1234";
-       assertEquals(email,"test@gmail.com");
-       assertEquals(password,"1234");
+    public void getSession() {
+        String email = "test@gmail.com";
+        String password = "1234";
+        assertEquals(email, "test@gmail.com");
+        assertEquals(password, "1234");
     }
 
     @Test
@@ -52,6 +52,6 @@ public class EmailDaoImpTest {
         EmailData emailData = new EmailData();
         String result = "Interview schedule";
         emailData.setData(result);
-        assertEquals(result,"Interview schedule");
+        assertEquals(result, "Interview schedule");
     }
 }

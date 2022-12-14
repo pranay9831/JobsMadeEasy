@@ -1,6 +1,5 @@
 package Group3.JobsMadeEasy.mail.model;
 
-import Group3.JobsMadeEasy.availability.model.Availability;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
