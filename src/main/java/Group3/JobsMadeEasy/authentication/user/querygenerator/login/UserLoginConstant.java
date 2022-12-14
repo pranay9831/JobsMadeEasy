@@ -1,5 +1,8 @@
 package Group3.JobsMadeEasy.authentication.user.querygenerator.login;
 
+/**
+ * @description: this are query generator constant
+ */
 public class UserLoginConstant {
 
     public static final String USER_TABLE =
