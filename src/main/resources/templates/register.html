@@ -52,7 +52,7 @@
             <div class="contact_details">
                 <h2>Contact Details</h2>
                 <div class="list">
-                    <input type="text" name="street" class="street" id="street" placeholder="Address Line 1" th:field="*{password}" required>
+                    <input type="text" name="street" class="street" id="street" placeholder="Address Line 1" th:field="*{address}" required>
                 </div>
 
                 <div class="forms">
@@ -84,6 +84,10 @@
                     </div>
                 </div>
                 <div class="list">
+                    <input type="text" name="city" id="city" class="city" placeholder="City" th:field="*{city}">
+                </div>
+
+                <div class="list">
                     <input type="text" name="email_id" id="email_id" class="email_id" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="Email Id" th:field="*{emailId}">
                 </div>
                 <div class="list">
@@ -96,7 +100,7 @@
                     </label>
                 </div>
             </div>
-            <button type="submit" class="submit_application" >
+            <button type="submit" class="register_submit" >
                 <a>Submit</a>
             </button>
 
