@@ -6,28 +6,24 @@
 
     <meta charset="utf-8">
     <title>Registration for Jobs made easy</title>
-    <!-- Mobile Specific Metas -->
+    <style>
+        h1 {
+            background-color: cadetblue;
+        }
+        .list {
+            margin-top: 20px;
+        }
+
+    </style>
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!-- Font-->
-    <!--    <link rel="stylesheet" type="text/css" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">-->
-    <!-- Main Style Css -->
-    <link th:href="@{/style/project.css}" type="text/css" rel="stylesheet" />
-    <style id="__web-inspector-hide-shortcut-style__">
-.__web-inspector-hide-shortcut__, .__web-inspector-hide-shortcut__ *, .__web-inspector-hidebefore-shortcut__::before, .__web-inspector-hideafter-shortcut__::after
-{
-    visibility: hidden !important;
-}
-</style></head>
+</head>
 <body class="registration_form" data-new-gr-c-s-check-loaded="14.1087.0" data-gr-ext-installed="">
 <div class="new_user_form">
-<!--    <div>-->
-<!--        <h1> Welcome Applicant <span th:text="${session.currentName}" /></h1>-->
-<!--        <span th:text="${session.currentId}" />-->
-<!--        <span th:text="${session.currentName}" />-->
-<!--    </div>-->
+    <h1 style="margin-top: 0px; padding-top: 15px;padding-bottom: 15px;">Enter Availability details</h1>
 
     <div class="content">
-        <form class="user_details" method="post" th:object="${availability}" th:action="@{/save/availability/{path}(path=${session.currentId})}">
+        <form class="list" method="post" th:object="${availability}" th:action="@{/save/availability/{path}(path=${session.currentId})}">
             <div class="contact_details">
                 <h2>Availability</h2>
                 <div class="list">
@@ -39,7 +35,8 @@
 
 
                 <div class="list-last">
-                    <input type="submit" name="add_availability" class="add_availability" value="Add Availability"/>
+                    <input type="submit" name="add_availability" class="add_availability" value="Add Availability"
+                           style="position: absolute; top: 15rem;left: 2rem;">
                 </div>
             </div>
         </form>

@@ -1,6 +1,10 @@
 package Group3.JobsMadeEasy.availability.querygenerator;
 
 public class AvailabilityConstant {
+    /**
+     * @DESCRIPTION: This class contains constants for availability table fields.
+     */
+
     public static final String AVAILABILITY_TABLE =
             "availability";
 
@@ -15,8 +19,6 @@ public class AvailabilityConstant {
 
     public static final String USER_ID_COLUMN =
             "userId";
-
-
 
 
 }
