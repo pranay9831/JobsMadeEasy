@@ -1,13 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/"><head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style> table, th, tr,td {
-        border: 2px solid black;}</style>
+    <style> table, th, tr, td {
+        border: 2px solid black;
+    }
+
+    #application-table tr:nth-child(even) {
+        background-color: #cccccc;
+    }
+
+    #application-table tr:hover {
+        background-color: #f2f2f2;
+    }
+
+    #application-table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: cadetblue;
+        color: white;
+    }
+    </style>
 </head>
 <body>
 <h1>All applications for available jobs</h1>
-<table border="2px solid black" style="float:left">
+<table border="2px solid black" id="application-table" style="float:left">
     <tr>
         <th>Application Id</th>
         <th>First Name</th>
@@ -39,6 +58,5 @@
         <td><h4 th:text="${jobApplication.expertThree}"></h4></td>
     </tr>
 </table>
-
 </body>
 </html>

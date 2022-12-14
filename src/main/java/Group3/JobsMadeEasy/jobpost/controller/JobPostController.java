@@ -1,62 +1,62 @@
 package Group3.JobsMadeEasy.jobpost.controller;
 
 import Group3.JobsMadeEasy.jobpost.dao.IJobPostDao;
+import Group3.JobsMadeEasy.jobpost.model.IJobPostFactory;
 import Group3.JobsMadeEasy.jobpost.model.JobPost;
+import Group3.JobsMadeEasy.jobpost.model.SimpleJobPost;
+import Group3.JobsMadeEasy.jobpost.model.SimpleJobPostFactory;
 import Group3.JobsMadeEasy.util.JobsMadeEasyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import static Group3.JobsMadeEasy.jobpost.controller.JobPostControllerConstant.*;
 
 @Controller
 public class JobPostController {
     private final JobPost jobPost;
 
-    public JobPostController(IJobPostDao jobPostDao)
-    {
-        this.jobPost = new JobPost(jobPostDao);
+    public JobPostController(IJobPostDao jobPostDao) {
+        IJobPostFactory jobPostFactory = new SimpleJobPostFactory();
+        this.jobPost = jobPostFactory.createJobPost(jobPostDao);
     }
-
 
     @GetMapping("/hr_home_page")
     public String showHrHomePage() {
-        return "hrHomePage";
+        return HR_HOME_PAGE;
     }
 
     @GetMapping("/create_job_post")
     public String viewCreateJobPost(Model model) {
-        JobPost jobPost = new JobPost();
+        IJobPostFactory jobPostFactory = new SimpleJobPostFactory();
+        JobPost jobPost = jobPostFactory.createJobPost();
         model.addAttribute("jobPost", jobPost);
-        return "createJobPost";
+        return CREATE_JOB_POST;
     }
 
     @GetMapping("/view_all_jobs")
     public String viewAllJobs(Model model) {
         List<JobPost> jobPosts;
-        try
-        {
-            jobPosts= getAllJobPost();
-        }
-        catch (SQLException | JobsMadeEasyException e) {
+        try {
+            jobPosts = getAllJobPost();
+        } catch (SQLException | JobsMadeEasyException e) {
             throw new RuntimeException(e);
         }
         model.addAttribute("jobPosts", jobPosts);
-        return "viewAllJobs";
+        return VIEW_ALL_JOBS;
     }
 
     @GetMapping("/delete_job_by_id")
     public String deleteJobsById(Model model) throws SQLException, JobsMadeEasyException {
         List<JobPost> jobPosts = getAllJobPost();
         model.addAttribute("jobPosts", jobPosts);
-        return "deleteJobById";
+        return DELETE_JOBS_BY_ID;
     }
 
-
     @PostMapping("/add_job_post")
-    public String createJobPost(@ModelAttribute JobPost jobPost) throws JobsMadeEasyException, SQLException {
+    public String createJobPost(@ModelAttribute SimpleJobPost jobPost) throws JobsMadeEasyException, SQLException {
 
         return this.jobPost.createJobPost(jobPost);
     }
@@ -66,7 +66,6 @@ public class JobPostController {
 
         return jobPost.getAllJobPost();
     }
-
 
     @GetMapping("/get_job_post_by_id/{id}")
     public Optional<JobPost> getJobPostById(@PathVariable int id) throws JobsMadeEasyException, SQLException {
@@ -78,5 +77,4 @@ public class JobPostController {
     public boolean deleteJobPostById(@PathVariable int id) throws JobsMadeEasyException, SQLException {
         return jobPost.deleteJobPostById(id);
     }
-
 }
