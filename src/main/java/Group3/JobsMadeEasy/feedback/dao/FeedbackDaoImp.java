@@ -65,7 +65,6 @@ public class FeedbackDaoImp implements IFeedbackDao {
         feedback.setOverAllRating(feedback.getOverAllRating());
         try {
             String createFeedbackQuery = feedbackQueryGenerator.createFeedback(feedback);
-            System.out.println(createFeedbackQuery);
             int updatedRows = statement.executeUpdate(createFeedbackQuery, Statement.RETURN_GENERATED_KEYS);
             if (updatedRows > 0) {
                 return APPLICANT_HOME_PAGE;
@@ -102,7 +101,6 @@ public class FeedbackDaoImp implements IFeedbackDao {
                 feedback = new Feedback(i, experience, comments, overAllRating);
                 feedbacks.add(feedback);
             }
-            System.out.println(feedbacks);
             return (feedbacks);
         } catch (SQLException e) {
             throw new JobsMadeEasyException(e.getMessage());
