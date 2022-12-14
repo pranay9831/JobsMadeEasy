@@ -70,7 +70,7 @@ public class EmailDaoImp extends EmailDaoConstant implements IEmailDao{
         msg.setFrom(new InternetAddress(mail +
                 "", false));
         msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
-        msg.setSubject(emailData.getData());
+        msg.setSubject("Congratulations!!");
         msg.setContent(emailData.getData(), "text/html");
         msg.setSentDate(new Date());
         Transport.send(msg);

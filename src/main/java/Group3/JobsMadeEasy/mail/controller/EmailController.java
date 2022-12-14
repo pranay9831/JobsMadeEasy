@@ -30,7 +30,8 @@ public class EmailController {
      */
     @PostMapping(value = "/send_mail/{mail}")
     public String sendEmail(@PathVariable String mail) throws MessagingException, IOException {
-        emailData.setData("Interview schedule successfully!!");
+        emailData.setData("Congratulation!! You have been selected for interview. \n Please provide your " +
+                "availability." + "\n\n\n\n\n" + "Thanks and Regards," + "\n" + "HR, Jobs Made Easy");
         emailDao.sendMail(emailData,mail);
         return "Email sent successfully";
     }

@@ -1,20 +1,18 @@
 package Group3.JobsMadeEasy.authentication.user.model;
 
-import Group3.JobsMadeEasy.authentication.user.dao.login.UserLoginDaoImpTest;
-import Group3.JobsMadeEasy.authentication.user.dao.registration.UserRegistrationDaoImpTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LoginTest{
+public class LoginTest {
 
-    public LoginTest(){
+    public LoginTest() {
         String email = "test@gmail.com";
         String password = "1234";
-        Login test = new Login(email,password);
-        assertEquals(email,test.getEmailId());
-        assertEquals(password,test.getPassword());
+        Login test = new Login(email, password);
+        assertEquals(email, test.getEmailId());
+        assertEquals(password, test.getPassword());
     }
 
     @Test
@@ -27,7 +25,5 @@ public class LoginTest{
         assertEquals(login.getEmailId(), "test@gmail.com");
         assertEquals(login.getPassword(), "test@123");
     }
-
-
 }
 
