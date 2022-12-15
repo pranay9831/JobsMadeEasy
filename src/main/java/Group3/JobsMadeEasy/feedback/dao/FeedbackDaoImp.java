@@ -1,12 +1,11 @@
 package Group3.JobsMadeEasy.feedback.dao;
 
-import Group3.JobsMadeEasy.database.repository.DatabaseSetup;
+import Group3.JobsMadeEasy.database.dao.DatabaseSetup;
 import Group3.JobsMadeEasy.feedback.model.Feedback;
 import Group3.JobsMadeEasy.feedback.querygenerator.IFeedbackQueryGenerator;
 import Group3.JobsMadeEasy.util.GenerateIdUtil;
 import Group3.JobsMadeEasy.util.JobsMadeEasyException;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -17,10 +16,15 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
+import static Group3.JobsMadeEasy.feedback.controller.FeedbackControllerConstant.FEEDBACK_FORM;
+import static Group3.JobsMadeEasy.jobapplication.controller.JobApplicationControllerConstant.APPLICANT_HOME_PAGE;
+
+/**
+ * @description Database Layer: It will handle all the database based queries for the Feedback Model
+ */
 
 @Component
-public class FeedbackDaoImp implements IFeedbackDao{
-
+public class FeedbackDaoImp implements IFeedbackDao {
     private final IFeedbackQueryGenerator feedbackQueryGenerator;
     private final DatabaseSetup databaseSetup;
     private final Connection connection;
@@ -28,7 +32,16 @@ public class FeedbackDaoImp implements IFeedbackDao{
 
     private final HttpSession session;
 
-    public FeedbackDaoImp(IFeedbackQueryGenerator feedbackDao, DatabaseSetup databaseSetup, IFeedbackQueryGenerator feedbackQueryGenerator, HttpSession session ) throws
+    /**
+     * @param databaseSetup
+     * @param feedbackQueryGenerator
+     * @throws SQLException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @description This will set up the database connection
+     */
+    public FeedbackDaoImp(IFeedbackQueryGenerator feedbackDao, DatabaseSetup databaseSetup,
+                          IFeedbackQueryGenerator feedbackQueryGenerator, HttpSession session) throws
             SQLException, IOException, ClassNotFoundException {
         this.feedbackQueryGenerator = feedbackQueryGenerator;
         this.databaseSetup = databaseSetup;
@@ -37,8 +50,14 @@ public class FeedbackDaoImp implements IFeedbackDao{
         this.statement = connection.createStatement();
     }
 
+    /**
+     * @param feedback
+     * @return It will return the HTML page "jobApplication" on success
+     * @throws JobsMadeEasyException
+     */
+
     @Override
-    public String createFeedback(@ModelAttribute Feedback feedback) throws JobsMadeEasyException {
+    public String createFeedback(Feedback feedback) throws JobsMadeEasyException {
 
         feedback.setFeedbackId(GenerateIdUtil.Object().generateRandomId());
         feedback.setExperience(feedback.getExperience());
@@ -46,19 +65,24 @@ public class FeedbackDaoImp implements IFeedbackDao{
         feedback.setOverAllRating(feedback.getOverAllRating());
         try {
             String createFeedbackQuery = feedbackQueryGenerator.createFeedback(feedback);
-            System.out.println("------------------- " + createFeedbackQuery);
             int updatedRows = statement.executeUpdate(createFeedbackQuery, Statement.RETURN_GENERATED_KEYS);
             if (updatedRows > 0) {
-                return "index";
+                return APPLICANT_HOME_PAGE;
             }
         } catch (SQLException e) {
+
             throw new JobsMadeEasyException(e.getMessage());
         } finally {
             databaseSetup.closeDatabaseConnection();
         }
-        return "myApplication";
-
+        return FEEDBACK_FORM;
     }
+
+    /**
+     * @throws JobsMadeEasyException
+     * @throws SQLException
+     * @description It returns feedback
+     */
 
     @Override
     public List<Feedback> getFeedback() throws JobsMadeEasyException, SQLException {
@@ -68,16 +92,16 @@ public class FeedbackDaoImp implements IFeedbackDao{
             String getFeedbackQuery = feedbackQueryGenerator.getFeedback();
             rs = statement.executeQuery(getFeedbackQuery);
 
+            Feedback feedback = null;
             while (rs.next()) {
                 int i = rs.getInt("feedbackId");
                 String experience = rs.getString("experience");
                 String comments = rs.getString("comments");
                 String overAllRating = rs.getString("overAllRatings");
-                Feedback feedback = new Feedback(i, experience, comments, overAllRating);
+                feedback = new Feedback(i, experience, comments, overAllRating);
                 feedbacks.add(feedback);
             }
-            System.out.println(feedbacks);
-            return feedbacks;
+            return (feedbacks);
         } catch (SQLException e) {
             throw new JobsMadeEasyException(e.getMessage());
         } finally {
@@ -86,8 +110,5 @@ public class FeedbackDaoImp implements IFeedbackDao{
         }
 
     }
-
-
-
-    }
+}
 

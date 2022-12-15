@@ -1,15 +1,19 @@
 package Group3.JobsMadeEasy.availability.model;
 
 import Group3.JobsMadeEasy.availability.dao.IAvailabilityDao;
-import Group3.JobsMadeEasy.util.JobsMadeEasyException;
 
-import java.sql.SQLException;
-import java.util.List;
 
 public class AvailabilityUserName {
+    /**
+     * @description: This class contains user's first name, last name and availability.
+     */
 
     private IAvailabilityDao availabilityDao;
     private int userId;
+    private String firstName;
+    private String lastName;
+    private int availableDays;
+    private String availableHours;
 
     public int getUserId() {
         return userId;
@@ -18,11 +22,6 @@ public class AvailabilityUserName {
     public void setUserId(int userId) {
         this.userId = userId;
     }
-
-    private String firstName;
-    private String lastName;
-    private int availableDays;
-    private String availableHours;
 
     public String getFirstName() {
         return firstName;
@@ -63,25 +62,12 @@ public class AvailabilityUserName {
     public AvailabilityUserName() {
     }
 
-    public AvailabilityUserName(int userId, String firstName, String lastName, int availableDays, String availableHours) {
+    public AvailabilityUserName(int userId, String firstName, String lastName, int availableDays, String availableHours)
+    {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.availableDays = availableDays;
         this.availableHours = availableHours;
     }
-
-    @Override
-    public String toString() {
-        return "AvailabilityUserName{" +
-                "availabilityDao=" + availabilityDao +
-                ", userId=" + userId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", availableDays=" + availableDays +
-                ", availableHours='" + availableHours + '\'' +
-                '}';
-    }
-
-
 }

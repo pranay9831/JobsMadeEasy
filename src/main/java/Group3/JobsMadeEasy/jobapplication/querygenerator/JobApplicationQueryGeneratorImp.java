@@ -5,17 +5,21 @@ import org.springframework.stereotype.Component;
 
 import static Group3.JobsMadeEasy.jobapplication.querygenerator.JobApplicationConstant.*;
 
+
+/**
+ * @description This class is responsible for query generation for Job Application
+ */
 @Component
-public class JobApplicationQueryGenerator implements IJobApplicationQueryGenerator {
+public class JobApplicationQueryGeneratorImp implements IJobApplicationQueryGenerator {
 
-    private static JobApplicationQueryGenerator obj;
+    private static JobApplicationQueryGeneratorImp obj;
 
-    private JobApplicationQueryGenerator() {
+    private JobApplicationQueryGeneratorImp() {
     }
 
-    public static JobApplicationQueryGenerator getInstance() {
+    public static JobApplicationQueryGeneratorImp getInstance() {
         if (obj == null) {
-            obj = new JobApplicationQueryGenerator();
+            obj = new JobApplicationQueryGeneratorImp();
         }
         return obj;
     }
@@ -46,20 +50,14 @@ public class JobApplicationQueryGenerator implements IJobApplicationQueryGenerat
                 ");";
     }
 
-    @Override
-    public String getJobApplicationById(int id) {
-        return "SELECT * FROM "+JOB_APPLICATION_TABLE+" WHERE "+APPLICATION_ID_COLUMN+" = " + id + ";";
-    }
+
 
     @Override
     public String getJobApplications() {
         return "SELECT * FROM " + JOB_APPLICATION_TABLE +";";
     }
 
-    @Override
-    public String deleteJobApplicationById(int id) {
-        return "DELETE FROM "+JOB_APPLICATION_TABLE+" WHERE "+APPLICATION_ID_COLUMN+" = " + id + ";";
-    }
+
 
 
 }

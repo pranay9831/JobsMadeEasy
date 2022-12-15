@@ -3,12 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style> table, th, tr,td {
-        border: 2px solid black;}</style>
+    <style> table, th, tr, td {
+        border: 2px solid black;
+    }
+
+    #delete-availability tr:nth-child(even) {
+        background-color: #cccccc;
+    }
+
+    #delete-availability tr:hover {
+        background-color: #f2f2f2;
+    }
+
+    #delete-availability th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: cadetblue;
+        color: white;
+    }
+    </style>
 </head>
 <body>
-<h1>Delete Jobs Here</h1>
-<table border="2px solid black">
+<h1>Delete Availability Here</h1>
+<table border="2px solid black" id="delete-availability">
     <tr>
         <th>availabilityId</th>
         <th>availableDays</th>
@@ -23,12 +41,9 @@
         <td><h4 th:text="${availability.userId}"></h4></td>
 
         <td>
-            <!--            <form th:action="@{/temp-delete-post/{id}(id=${jobPosts.jobPostId})}" method="post" th:attr="data-post-id=${jobPosts.jobPostId}" class="form">-->
-            <!--                <button type="submit"  class="button&#45;&#45;delete" onclick="location.href='deleteAvailabilityById.html'">Delete job</button>-->
-            <!--            </form>-->
+
             <button type="submit" class="button--delete" th:attr="data-post-id=${availability.availabilityId}">Delete Availability</button>
-            <!--            <form th:action="@{/temp-delete-post/{id}(id=${jobPosts.jobPostId})}" method="post" th:attr="data-post-id=${jobPosts.jobPostId}" class="form">-->
-            <!--            </form>-->
+
 
         </td>
     </tr>
@@ -48,14 +63,7 @@
             }).then((res) => res.json()).then(data => location.reload());
 
         })
-        // deleteButton.addEventListener("submit", (e) => {
-        //     e.preventDefault();
-        //     const id = e.target.dataset.postId;
-        //     e.target.closest(".form").setAttribute("action", `\${/delete_job_post_by_id/${id}`);
-        //     e.target.closest(".form").setAttribute("method", "post")
-        //
-        //     console.log(e.target.closest(".form").getAttribute("action"));
-        // })
+
     })
 </script>
 

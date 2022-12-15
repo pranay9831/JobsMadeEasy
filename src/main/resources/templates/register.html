@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
@@ -29,13 +28,15 @@
                 </div>
                 <div class="forms">
                     <div class="list list-1">
-                        <input type="text" name="firstName" id="firstName" class="firstName" placeholder="First Name" th:field="*{firstName}">
+                        <input type="text" name="firstName" id="firstName" class="firstName" placeholder="First Name"
+                               th:field="*{firstName}">
                     </div>
                     <div class="list list-2">
-                        <input type="text" name="last_name" id="last_name" class="lastName" placeholder="Last Name" th:field="*{lastName}" >
+                        <input type="text" name="last_name" id="last_name" class="lastName" placeholder="Last Name"
+                               th:field="*{lastName}">
                     </div>
                 </div>
-               <div class="list">
+                <div class="list">
                     <span class="title_button">
    	<i class="drop_down"></i>
  </span>
@@ -52,12 +53,14 @@
             <div class="contact_details">
                 <h2>Contact Details</h2>
                 <div class="list">
-                    <input type="text" name="street" class="street" id="street" placeholder="Address Line 1" th:field="*{password}" required>
+                    <input type="text" name="street" class="street" id="street" placeholder="Address Line 1"
+                           th:field="*{address}" required>
                 </div>
 
                 <div class="forms">
                     <div class="list list-1">
-                        <input type="text" name="zip" class="zip" id="zip" placeholder="Zip Code" th:field="*{postalCode}" required>
+                        <input type="text" name="zip" class="zip" id="zip" placeholder="Zip Code"
+                               th:field="*{postalCode}" required>
                     </div>
                     <div class="list list-2">
                         <select name="province" class="province" th:field="*{province}">
@@ -80,26 +83,33 @@
                 </div>
                 <div class="forms">
                     <div class="list list-2">
-                        <input type="text" name="phone_number" class="phone_number" id="phone_number" placeholder="Phone Number" th:field="*{phoneNumber}" required>
+                        <input type="text" name="phone_number" class="phone_number" id="phone_number"
+                               placeholder="Phone Number" th:field="*{phoneNumber}" required>
                     </div>
                 </div>
                 <div class="list">
-                    <input type="text" name="email_id" id="email_id" class="email_id" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="Email Id" th:field="*{emailId}">
+                    <input type="text" name="city" id="city" class="city" placeholder="City" th:field="*{city}">
+                </div>
+
+                <div class="list">
+                    <input type="text" name="email_id" id="email_id" class="email_id" required
+                           pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="Email Id" th:field="*{emailId}">
                 </div>
                 <div class="list">
-                    <input type="password" name="password" class="password" id="password" placeholder="Create Password" th:field="*{password}" required>
+                    <input type="password" name="password" class="password" id="password" placeholder="Create Password"
+                           th:field="*{password}" required>
                 </div>
                 <div class="conditions">
-                    <label class="container"><p>I agree to this website's <a href="#" class="text">Terms and Conditions</a> and I want to get email notifications.</p>
+                    <label class="container"><p>I agree to this website's <a href="#" class="text">Terms and
+                        Conditions</a> and I want to get email notifications.</p>
                         <input type="checkbox" name="checkbox">
                         <span class="checkmark"></span>
                     </label>
                 </div>
             </div>
-            <button type="submit" class="submit_application" >
+            <button type="submit" class="register_submit">
                 <a>Submit</a>
             </button>
-
         </form>
     </div>
 </div>

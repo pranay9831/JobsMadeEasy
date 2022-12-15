@@ -17,7 +17,8 @@ public class UserTest {
 
     UserLoginDaoImpTest userLoginDaoImpTest = new UserLoginDaoImpTest();
     UserRegistrationDaoImpTest userRegistrationDaoImpTest = new UserRegistrationDaoImpTest();
-    User user = new User(userLoginDaoImpTest,userRegistrationDaoImpTest);
+    User user = new User(userLoginDaoImpTest, userRegistrationDaoImpTest);
+
     @Test
     public void testUserClass() {
         User user = Mockito.spy(new User());
@@ -59,24 +60,25 @@ public class UserTest {
         assertEquals(user.getPostalCode(), "B2k 2Z2");
         assertEquals(user.getRoleId(), 1);
         assertEquals(user.isEmployee(), false);
-        assertEquals(user.isApproved(),false);
+        assertEquals(user.isApproved(), false);
     }
 
     @Test
     public void checkLoginDetailsTest() throws SQLException, JobsMadeEasyException {
-        Login login = new Login("test@gmail.com","1234");
+        Login login = new Login("test@gmail.com", "1234");
         String result = user.checkLoginDetails(login);
-        assertEquals(result,"loginHomePage");
+        assertEquals(result, "loginHomePage");
     }
 
     @Test
     public void checkCurrentUserRoleTest() {
         String name = "login";
         String result = name + "HomePage";
-        assertEquals(result,"loginHomePage");
+        assertEquals(result, "loginHomePage");
     }
+
     @Test
-    public void createUserFailureTest(){
+    public void createUserFailureTest() {
         Throwable exception = assertThrows(JobsMadeEasyException.class, () -> user.createUser(null));
         assertEquals("user register details not found..", exception.getMessage());
     }
@@ -84,24 +86,24 @@ public class UserTest {
     @Test
     public void createUserSuccessTest() throws JobsMadeEasyException {
         User test = new User(1, "Deep",
-                "Dave", "12345678", "test@gmail.com","1234","halifax",
-                "NS","Dalhousie","123",
-                1,false,false);
+                "Dave", "12345678", "test@gmail.com", "1234", "halifax",
+                "NS", "Dalhousie", "123",
+                1, false, false);
         String result = user.createUser(test);
-        assertEquals(result,"register");
+        assertEquals(result, "register");
     }
 
     @Test
     public void getAllUsersTest() throws SQLException, JobsMadeEasyException {
         List<User> test = user.getAllUsers();
-        assertEquals(2,test.size());
+        assertEquals(2, test.size());
     }
 
     @Test
     public void getUserByIdSuccessTest() throws SQLException, JobsMadeEasyException {
         int userId = 1;
         Optional<User> test = user.getUserById(userId);
-        assertEquals(1,test.get().getUserId());
+        assertEquals(1, test.get().getUserId());
     }
 
     @Test
@@ -114,7 +116,7 @@ public class UserTest {
     public void deleteUserByIdSuccessTest() throws SQLException, JobsMadeEasyException {
         int userId = 1;
         boolean test = user.deleteUserById(userId);
-        assertEquals(true,test);
+        assertEquals(true, test);
     }
 
     @Test
@@ -126,7 +128,7 @@ public class UserTest {
     @Test
     public void logout() {
         String result = user.logout();
-        assertEquals(result,"logout");
+        assertEquals(result, "logout");
     }
 
 }

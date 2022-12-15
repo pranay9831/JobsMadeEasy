@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/"><head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style> table, th, tr,td {
-        border: 2px solid black;}
+    <style> table, th, tr, td {
+        border: 2px solid black;
+    }
 
-    #job-post tr:nth-child(even)
-    {
+    #job-post tr:nth-child(even) {
         background-color: #cccccc;
     }
 
-    #job-post tr:hover
-    {
+    #job-post tr:hover {
         background-color: #f2f2f2;
     }
 
@@ -25,32 +25,26 @@
     </style>
 </head>
 <body>
-<h1>View All Jobs Here</h1>
-    <table border="2px solid black" style="float:left" id="job-post">
-        <tr>
-            <th>jobPostId</th>
-            <th>jobTitle</th>
-            <th>jobDescription</th>
-            <th>jobType</th>
-            <th>salary</th>
-            <th>jobLocation</th>
-            <th>languageRequirements</th>
-        </tr>
-        <tr th:each="jobPosts:${jobPosts}">
-            <th><h4 th:text="${jobPosts.jobPostId}"></h4></th>
-            <td><h4 th:text="${jobPosts.jobTitle}"></h4></td>
-            <td><h4 th:text="${jobPosts.jobDescription}"></h4></td>
-            <td><h4 th:text="${jobPosts.jobType}"></h4></td>
-            <td><h4 th:text="${jobPosts.salary}"></h4></td>
-            <td><h4 th:text="${jobPosts.jobLocation}"></h4></td>
-            <td><h4 th:text="${jobPosts.languageRequirements}"></h4></td>
-<!--            <td>-->
-<!--&lt;!&ndash;                <form th:action="@{/update_job_post/{id}(id=${jobPosts.jobPostId})}" method="get">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <button type="submit" class="button&#45;&#45;delete" th:attr="data-post-id=${jobPosts.jobPostId}">Update Job</button>&ndash;&gt;-->
-<!--&lt;!&ndash;                </form>&ndash;&gt;-->
-
-<!--            </td>-->
-        </tr>
-    </table>
+<h1>View All Jobs</h1>
+<table border="2px solid black" id="job-post">
+    <tr>
+        <th>jobPostId</th>
+        <th>jobTitle</th>
+        <th>jobDescription</th>
+        <th>jobType</th>
+        <th>salary</th>
+        <th>jobLocation</th>
+        <th>languageRequirements</th>
+    </tr>
+    <tr th:each="jobPosts:${jobPosts}">
+        <th><h4 th:text="${jobPosts.jobPostId}"></h4></th>
+        <td><h4 th:text="${jobPosts.jobTitle}"></h4></td>
+        <td><h4 th:text="${jobPosts.jobDescription}"></h4></td>
+        <td><h4 th:text="${jobPosts.jobType}"></h4></td>
+        <td><h4 th:text="${jobPosts.salary}"></h4></td>
+        <td><h4 th:text="${jobPosts.jobLocation}"></h4></td>
+        <td><h4 th:text="${jobPosts.languageRequirements}"></h4></td>
+    </tr>
+</table>
 </body>
 </html>

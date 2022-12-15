@@ -18,7 +18,7 @@
             </div>
             <div class="general_details">
                 <div th:if="${param.success}">
-                    <div class="alert alert-info">You've entered incorrect details.</div>
+                    <div class="alert alert-info" style="margin-top: 10px">You've entered incorrect details.</div>
                 </div>
                 <div class="contact_details_1">
                     <h2>LOGIN</h2>
@@ -28,14 +28,11 @@
                     <div class="list">
                         <input type="password" name="password" class="login_password" id="password" placeholder="Create Password" th:field="*{password}" required>
                     </div>
-                    <button type="submit" class="submit_application" >
+                    <button type="submit" class="login_submit" >
                         <a>Submit</a>
                     </button>
-
-
                     </div>
                 </div>
-            </div>
         </form>
     </div>
 </div>

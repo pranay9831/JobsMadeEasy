@@ -32,15 +32,15 @@ public class RoleTest {
     }
 
     @BeforeEach
-    public void init(){
+    public void init() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
     public void createRoleSuccessTest() throws JobsMadeEasyException {
-        Role test = new Role(3,"employee");
+        Role test = new Role(3, "employee");
         boolean result = role.createRole(test);
-        assertEquals(result,true);
+        assertEquals(result, true);
     }
 
     @Test()
@@ -53,14 +53,14 @@ public class RoleTest {
     @Test
     public void getAllRolesTest() throws SQLException, JobsMadeEasyException {
         List<Role> test = role.getAllRoles();
-        assertEquals(2,test.size());
+        assertEquals(2, test.size());
     }
 
     @Test
     public void getRoleByIdSuccessTest() throws SQLException, JobsMadeEasyException {
         int roleId = 1;
         Optional<Role> test = role.getRoleById(roleId);
-        assertEquals(1,test.get().getRoleId());
+        assertEquals(1, test.get().getRoleId());
     }
 
     @Test
@@ -73,7 +73,7 @@ public class RoleTest {
     public void deleteRoleByIdSuccessTest() throws SQLException, JobsMadeEasyException {
         int roleId = 1;
         boolean test = role.deleteRoleById(roleId);
-        assertEquals(true,test);
+        assertEquals(true, test);
     }
 
     @Test
