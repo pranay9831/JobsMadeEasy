@@ -19,6 +19,9 @@ import java.util.Optional;
 import static Group3.JobsMadeEasy.jobpost.controller.JobPostControllerConstant.CREATE_JOB_POST;
 import static Group3.JobsMadeEasy.jobpost.controller.JobPostControllerConstant.HR_HOME_PAGE;
 
+/**
+ *@Description It will handle all the database layer queries related to job posts.
+ */
 @Component
 public class IJobPostDaoImp implements IJobPostDao {
     private final IJobPostQueryGenerator jobPostQueryGenerator;
@@ -27,6 +30,14 @@ public class IJobPostDaoImp implements IJobPostDao {
     private final Statement statement;
     private final HttpSession session;
 
+    /**
+     * @param jobPostQueryGenerator
+     * @param databaseSetup
+     * @param session
+     * @throws SQLException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public IJobPostDaoImp(IJobPostQueryGenerator jobPostQueryGenerator, DatabaseSetup databaseSetup,
                           HttpSession session)
             throws SQLException, IOException, ClassNotFoundException {
@@ -37,6 +48,13 @@ public class IJobPostDaoImp implements IJobPostDao {
         this.session = session;
     }
 
+    /**
+     *
+     * @param jobPost
+     * @return It will either redirect HR to Home page if job post creation is successful, or redirect
+     * to job post creation page again.
+     * @throws JobsMadeEasyException
+     */
     @Override
     public String createJobPost(JobPost jobPost) throws JobsMadeEasyException {
         try {
@@ -53,6 +71,10 @@ public class IJobPostDaoImp implements IJobPostDao {
         return CREATE_JOB_POST;
     }
 
+    /**
+     * @return It will return list of all job posts from database to HR.
+     * @throws JobsMadeEasyException
+     */
     @Override
     public List<JobPost> getAllJobPost() throws JobsMadeEasyException {
         ResultSet resultSet;
@@ -87,6 +109,13 @@ public class IJobPostDaoImp implements IJobPostDao {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return return job post that have given ID.
+     * @throws JobsMadeEasyException
+     * @throws SQLException
+     */
     @Override
     public Optional<JobPost> getJobPostById(int id) throws JobsMadeEasyException, SQLException {
         ResultSet resultSet = null;
@@ -118,6 +147,11 @@ public class IJobPostDaoImp implements IJobPostDao {
         return null;
     }
 
+    /**
+     * @param id
+     * @return It will delete job post from database that has the same ID as given.
+     * @throws JobsMadeEasyException
+     */
     @Override
     public boolean deleteJobPostById(int id) throws JobsMadeEasyException {
         try {

@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @Description It will handle all properties of Job post, and it contains all the business logic related to job posts.
+ */
 @Component
 public abstract class JobPost {
     protected IJobPostDao jobPostDao;
@@ -114,6 +117,12 @@ public abstract class JobPost {
         this.languageRequirements = languageRequirements;
     }
 
+    /**
+     * @param jobPost
+     * @return redirect HR to job post creation page after login.
+     * @throws JobsMadeEasyException
+     * @throws SQLException
+     */
     public String createJobPost(JobPost jobPost) throws JobsMadeEasyException {
         if (jobPost == null) {
             throw new JobsMadeEasyException("Failed to add job post!!");
@@ -129,10 +138,21 @@ public abstract class JobPost {
         return this.jobPostDao.createJobPost(jobPost);
     }
 
+    /**
+     * @return return list of all job posts stored in a database to HR.
+     * @throws JobsMadeEasyException
+     * @throws SQLException
+     */
     public List<JobPost> getAllJobPost() throws JobsMadeEasyException {
         return this.jobPostDao.getAllJobPost();
     }
 
+    /**
+     * @param id
+     * @return return Job posts of specific ID to HR.
+     * @throws JobsMadeEasyException
+     * @throws SQLException
+     */
     public Optional<JobPost> getJobPostById(int id) throws JobsMadeEasyException, SQLException {
         if (id == 0) {
             throw new JobsMadeEasyException("No job post found with given ID!!");
@@ -140,6 +160,12 @@ public abstract class JobPost {
         return this.jobPostDao.getJobPostById(id);
     }
 
+    /**
+     * @param id
+     * @return delete job post from database after button click from HR.
+     * @throws JobsMadeEasyException
+     * @throws SQLException
+     */
     public boolean deleteJobPostById(int id) throws JobsMadeEasyException, SQLException {
         if (this.getJobPostById(id).isPresent()) {
             return this.jobPostDao.deleteJobPostById(id);
